@@ -1,5 +1,5 @@
 package org.example.dao.fabrics;
-import org.example.dao.API.IUserDAO;
+
 import org.example.dao.UserDAO;
 
 public class UserDaoSingleton {

@@ -10,6 +10,9 @@ public class UserDTO {
     private String name;
     private LocalDate birthDate;
     private LocalDate regDate;
+    enum role {admin,
+        user
+    }
 
     public UserDTO(int id, String login, String password, String name, LocalDate birthDate, LocalDate regDate) {
         this.id = id;
@@ -92,10 +95,5 @@ public class UserDTO {
                 ", regDate=" + regDate +
                 '}';
     }
-
-    enum role {admin,
-    user
-    }
-
 }
 
