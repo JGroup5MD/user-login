@@ -12,7 +12,7 @@ public class UserServiceSingleton {
         if(instance==null){
             synchronized (UserService.class){
                 if(instance==null){
-                    instance=new UserService(UserDaoSingleton.getInstance());
+                    instance=new UserService();
                 }
             }
         }

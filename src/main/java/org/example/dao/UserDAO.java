@@ -1,41 +1,34 @@
 package org.example.dao;
 
+import org.example.DTO.Dates;
 import org.example.DTO.UserDTO;
 import org.example.dao.API.IUserDAO;
-
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
 import java.util.Map;
 
 
 public class UserDAO implements IUserDAO {
-    public UserDAO(List<UserDTO> users) {
-        this.users = users;
-    }
-    List<UserDTO> users=new ArrayList<>();
+    private Map<Integer, UserDTO> mapUser=new HashMap<>();
 
     @Override
-    public List<UserDTO> add() {
-        users.add(new UserDTO(1, "admin", "1111", "Шадрин Илья", 1, LocalDate.now()));
-    return null;
+    public void add() {
+        UserDTO userDTO=new UserDTO("", " "," ", new Dates(0,0,0), new Dates(0,0,0));
+        this.mapUser.put(1, new UserDTO("admin", "1111",
+                "Шадрин Илья",
+                new Dates(1998,10,12),
+                new Dates(2022,12,18)));
+    }
+    @Override
+    public  Map<Integer, UserDTO> deliteUserFromMap(int key) {
+        Map<Integer, UserDTO>  deleted=new HashMap<>();
+        deleted.entrySet().removeIf(e->e.getKey()==key);
+        return deleted;
     }
 
     @Override
-    public UserDAO mapUser(Map<Integer, List<UserDTO>> map) {
-        return null;
-    }
-
-    @Override
-    public UserDAO delite(int key) {
-
-        return null;
-    }
-
-
-    @Override
-    public List<UserDTO> get() {
-        return null;
+    public Map<Integer, UserDTO> getMapUser() {
+        add();
+        return this.mapUser;
     }
 }
 

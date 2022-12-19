@@ -8,4 +8,5 @@ import java.util.Map;
 
 public interface IUserService {
    List<UserDTO>get();
+   Map<Integer, UserDTO> getMapUser();
 }

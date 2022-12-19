@@ -16,6 +16,12 @@ public class UserService implements IUserService {
         return null;
     }
 
+    @Override
+    public Map<Integer, UserDTO> getMapUser() {
+        return null;
+    }
+}
+
 
 //
 //    public void save(Map<Integer, List<UserDTO>> map) throws Exception {
@@ -33,5 +39,5 @@ public class UserService implements IUserService {
 //        newUser.setPassword(password[0]);;
 //        newUser.setName(name[0]);
 //        newUser.setBirthDate(birthDate[0]);//+parse
-        }
-}
+
+
