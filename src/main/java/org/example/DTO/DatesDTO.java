@@ -2,12 +2,12 @@ package org.example.DTO;
 
 import java.util.Objects;
 
-public class Dates {
+public class DatesDTO {
     private int year;
     private int month;
     private int day;
 
-    public Dates(int year, int month, int day) {
+    public DatesDTO(int year, int month, int day) {
         this.year = year;
         this.month = month;
         this.day = day;
@@ -22,7 +22,7 @@ public class Dates {
 
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Dates dates = (Dates) o;
+        DatesDTO dates = (DatesDTO) o;
         return year == dates.year && month == dates.month && day == dates.day;
     }
 

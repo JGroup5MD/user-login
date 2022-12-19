@@ -1,10 +1,9 @@
 package org.example.service;
 
 import org.example.DTO.UserDTO;
-import org.example.dao.API.IUserDAO;
+import org.example.DAO.API.IUserDAO;
 import org.example.service.API.IUserService;
 
-import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 

@@ -1,4 +1,4 @@
-package org.example.dao;
+package org.example.DAO;
 
 public class MessageDAO {
     public static class MessageDTO {

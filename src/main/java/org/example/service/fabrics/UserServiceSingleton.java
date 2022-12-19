@@ -1,6 +1,6 @@
 package org.example.service.fabrics;
 
-import org.example.dao.fabrics.UserDaoSingleton;
+import org.example.service.API.IUserService;
 import org.example.service.UserService;
 
 public class UserServiceSingleton {
@@ -8,7 +8,7 @@ public class UserServiceSingleton {
 
     private UserServiceSingleton() {
     }
-    public  static UserService getInstance(){
+    public  static IUserService getInstance(){
         if(instance==null){
             synchronized (UserService.class){
                 if(instance==null){

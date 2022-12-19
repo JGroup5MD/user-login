@@ -8,12 +8,12 @@ public class UserDTO {
     private String login;
     private String password;
     private String name;
-    private Dates birthDate;
-    private Dates regDate;
+    private DatesDTO birthDate;
+    private DatesDTO regDate;
 
 
 
-    public UserDTO( String login, String password, String name, Dates birthDate, Dates regDate) {
+    public UserDTO(String login, String password, String name, DatesDTO birthDate, DatesDTO regDate) {
         this.login = login;
         this.password = password;
         this.name = name;
@@ -46,19 +46,19 @@ public class UserDTO {
         this.name = name;
     }
 
-    public Dates getBirthDate() {
+    public DatesDTO getBirthDate() {
         return birthDate;
     }
 
-    public Dates getRegDate() {
+    public DatesDTO getRegDate() {
         return regDate;
     }
 
-    public void setBirthDate(Dates birthDate) {
+    public void setBirthDate(DatesDTO birthDate) {
         this.birthDate = birthDate;
     }
 
-    public void setRegDate(Dates regDate) {
+    public void setRegDate(DatesDTO regDate) {
         this.regDate = regDate;
     }
 

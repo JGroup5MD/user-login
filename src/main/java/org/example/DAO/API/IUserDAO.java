@@ -1,4 +1,4 @@
-package org.example.dao.API;
+package org.example.DAO.API;
 
 import org.example.DTO.UserDTO;
 

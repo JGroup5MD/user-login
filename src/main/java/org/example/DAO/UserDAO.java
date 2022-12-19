@@ -1,8 +1,8 @@
-package org.example.dao;
+package org.example.DAO;
 
-import org.example.DTO.Dates;
+import org.example.DTO.DatesDTO;
 import org.example.DTO.UserDTO;
-import org.example.dao.API.IUserDAO;
+import org.example.DAO.API.IUserDAO;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -12,11 +12,11 @@ public class UserDAO implements IUserDAO {
 
     @Override
     public void add() {
-        UserDTO userDTO=new UserDTO("", " "," ", new Dates(0,0,0), new Dates(0,0,0));
+        UserDTO userDTO=new UserDTO("", " "," ", new DatesDTO(0,0,0), new DatesDTO(0,0,0));
         this.mapUser.put(1, new UserDTO("admin", "1111",
                 "Шадрин Илья",
-                new Dates(1998,10,12),
-                new Dates(2022,12,18)));
+                new DatesDTO(1998,10,12),
+                new DatesDTO(2022,12,18)));
     }
     @Override
     public  Map<Integer, UserDTO> deliteUserFromMap(int key) {
