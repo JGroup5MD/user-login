@@ -12,8 +12,13 @@ public class UserDAO implements IUserDAO {
 
     @Override
     public void add() {
-        UserDTO userDTO=new UserDTO("", " "," ", new DatesDTO(0,0,0), new DatesDTO(0,0,0));
-        this.mapUser.put(1, new UserDTO("admin", "1111",
+        UserDTO userDTO=new UserDTO("",
+                " ",
+                " ",
+                new DatesDTO(0,0,0),
+                new DatesDTO(0,0,0));
+        this.mapUser.put(1, new UserDTO("admin",
+                "1111",
                 "Шадрин Илья",
                 new DatesDTO(1998,10,12),
                 new DatesDTO(2022,12,18)));

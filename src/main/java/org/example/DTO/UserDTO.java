@@ -1,6 +1,7 @@
 package org.example.DTO;
 
 import java.lang.String;
+
 import java.util.Objects;
 
 public class UserDTO {
@@ -10,17 +11,15 @@ public class UserDTO {
     private String name;
     private DatesDTO birthDate;
     private DatesDTO regDate;
+    private DatesDTO dates;
 
-
-
-    public UserDTO(String login, String password, String name, DatesDTO birthDate, DatesDTO regDate) {
+      public UserDTO(String login, String password, String name, DatesDTO birthDate, DatesDTO regDate) {
         this.login = login;
         this.password = password;
         this.name = name;
         this.birthDate = birthDate;
         this.regDate = regDate;
     }
-
 
     public String getLogin() {
         return login;
@@ -55,7 +54,7 @@ public class UserDTO {
     }
 
     public void setBirthDate(DatesDTO birthDate) {
-        this.birthDate = birthDate;
+        this.birthDate = dates;
     }
 
     public void setRegDate(DatesDTO regDate) {
