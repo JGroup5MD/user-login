@@ -1,4 +1,6 @@
 package org.example.controllers.admin;
 
-public class StatisticsServlet {
+import javax.servlet.http.HttpServlet;
+
+public class StatisticsServlet extends HttpServlet {
 }

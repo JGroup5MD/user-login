@@ -1,4 +1,6 @@
 package org.example.controllers;
 
-public class MessageServlet {
+import javax.servlet.http.HttpServlet;
+
+public class MessageServlet extends HttpServlet {
 }
