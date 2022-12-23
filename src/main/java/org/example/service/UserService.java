@@ -2,7 +2,7 @@ package org.example.service;
 
 import org.example.dao.UserDAO;
 import org.example.dao.UserDTO;
-import org.example.helpers.dateParser;
+import org.example.helpers.DateParser;
 
 import java.util.Map;
 
@@ -20,7 +20,7 @@ public class UserService implements IUserService{
         newUser.setLogin(login[0]);
         newUser.setPassword(password[0]);
         newUser.setName(name[0]);
-        newUser.setBirthDate(dateParser.parseDate(birthDate[0]));
+        newUser.setBirthDate(DateParser.parseDate(birthDate[0]));
 
         UserDAO.getInstance().registerNewUser(newUser);
 

@@ -5,7 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-public class dateParser {
+public class DateParser {
 
     public static Date parseDate(String birthDate) {
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-YYYY", Locale.ENGLISH);
