@@ -11,7 +11,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>UserServlet</servlet-name>
-        <url-pattern>/as</url-pattern>
+        <url-pattern>/api/user</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -20,7 +20,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
-        <url-pattern>/gs</url-pattern>
+        <url-pattern>/api/login</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -29,7 +29,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>MessageServlet</servlet-name>
-        <url-pattern>/vs</url-pattern>
+        <url-pattern>/api/message</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -38,7 +38,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>StatisticsServlet</servlet-name>
-        <url-pattern>/ss</url-pattern>
+        <url-pattern>/api/admin/statistics</url-pattern>
     </servlet-mapping>
 
 

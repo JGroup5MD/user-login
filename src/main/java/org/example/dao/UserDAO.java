@@ -11,9 +11,19 @@ public class UserDAO {
         users.add(newUser);
     }
 
-    public ArrayList<UserDTO> getAll() {
+    public ArrayList<UserDTO> getAllUsers() {
         return users;
     }
+
+    private int lastID;
+    public int getLastID(){
+        return lastID;
+    }
+    public void setLastID(int newLastID){
+        lastID = newLastID;
+    }
+
+
 
     public static UserDAO getInstance() {
         if (instance == null) {
