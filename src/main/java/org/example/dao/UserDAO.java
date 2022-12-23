@@ -2,12 +2,15 @@ package org.example.dao;
 
 import java.util.ArrayList;
 
-public class UserDAO {
+public class UserDAO implements IUserDAO {
     private volatile static UserDAO instance;
 
-    private ArrayList<UserDTO> users = new ArrayList<>();
+    private final ArrayList<UserDTO> users = new ArrayList<>();
 
-    public void register(UserDTO newUser) {
+    private int lastID;
+
+    public void registerNewUser(UserDTO newUser) {
+        generateID(newUser);
         users.add(newUser);
     }
 
@@ -15,15 +18,9 @@ public class UserDAO {
         return users;
     }
 
-    private int lastID;
-    public int getLastID(){
-        return lastID;
+    public void generateID(UserDTO newUser) {
+        newUser.setId(lastID++);
     }
-    public void setLastID(int newLastID){
-        lastID = newLastID;
-    }
-
-
 
     public static UserDAO getInstance() {
         if (instance == null) {
