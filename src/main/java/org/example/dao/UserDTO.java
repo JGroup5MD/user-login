@@ -10,6 +10,10 @@ public class UserDTO {
     private Date birthDate;
     private Date regDate;
 
+    public UserDTO(){
+
+    }
+
     public int getId() {
         return id;
     }
