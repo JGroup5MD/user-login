@@ -2,13 +2,13 @@ package dto;
 
 import java.util.Arrays;
 
-public class CredsDTO {
+public class CredsDto {
     private String login;
     private String password;
     private String[] role;
     private int id;
 
-    public CredsDTO(String login, String password, String[] role, int id) {
+    public CredsDto(String login, String password, String[] role, int id) {
         this.login = login;
         this.password = password;
         this.role = role;
@@ -90,8 +90,8 @@ public class CredsDTO {
             return this;
         }
 
-        public CredsDTO build() {
-            return new CredsDTO(login, password, role, id);
+        public CredsDto build() {
+            return new CredsDto(login, password, role, id);
         }
     }
 

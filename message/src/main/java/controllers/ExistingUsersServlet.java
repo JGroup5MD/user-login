@@ -7,9 +7,9 @@ import javax.servlet.http.HttpServlet;
 
 @WebServlet(name = "ExistingUsersServlet", urlPatterns = "/api/user")
 public class ExistingUsersServlet extends HttpServlet {
-    private final IUserService service;
+//    private final IUserService service;
 
     public ExistingUsersServlet(){
-        this.service = UserServiceSingleton.getInstance();
+  //      this.service = UserServiceSingleton.getInstance();
     }
 }

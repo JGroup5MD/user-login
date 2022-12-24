@@ -1,11 +1,11 @@
 package service.api;
 
-import dto.UsersDTO;
+import dto.UserDto;
 
 import java.util.List;
 
 public interface IUserService {
-    List<UsersDTO> get();
+    List<UserDto> get();
 
     boolean exists(String name);
 }

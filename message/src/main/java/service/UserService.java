@@ -1,18 +1,18 @@
 package service;
 
-import dto.UsersDTO;
+import dto.UserDto;
 import service.api.IUserService;
 
 import java.util.List;
 
-public class UsersService implements IUserService {
+public class UserService implements IUserService {
     @Override
-    public List<UsersDTO> get() {
+    public List<UserDto> get() {
         return null;
     }
 
     @Override
-    public boolean exists(String name) {
+    public boolean exists(String login) {
         return false;
     }
 }

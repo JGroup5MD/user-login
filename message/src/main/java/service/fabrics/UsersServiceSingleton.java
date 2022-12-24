@@ -1,12 +1,11 @@
 package service.fabrics;
 
-import service.UsersService;
-import service.api.IUserService;
+import service.UserService;
 
 public class UsersServiceSingleton {
-    private volatile static UsersService instance;
+    private volatile static UserService instance;
 
-    private UsersServiceSingleton(){
+   /* private UsersServiceSingleton(){
     }
 
     public static IUserService getInstance() {
@@ -18,6 +17,6 @@ public class UsersServiceSingleton {
             }
         }
         return instance;
-    }
+    }*/
 
 }

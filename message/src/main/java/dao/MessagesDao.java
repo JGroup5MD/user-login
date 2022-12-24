@@ -2,7 +2,7 @@ package dao;
 
 import java.text.SimpleDateFormat;
 
-public class Messages {
+public class MessagesDao {
     private String from;
     private String to;
     private SimpleDateFormat dateOfMessage;

@@ -1,29 +1,39 @@
-package dao;
-
+package appuser;
 
 import java.text.SimpleDateFormat;
-import java.util.SimpleTimeZone;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
-public class Users {
+public class UserAccount implements IUserAccount{
     private String name;
     private String lastname;
     private String middlename;
     private SimpleDateFormat dateOfBirth;
     private SimpleDateFormat dateOfReg;
-    private String role;
+    private List<String> role;
     private long id;
 
+    private String login;
 
-    public Users(String name, String lastname, String middlename,
-                 SimpleDateFormat dateOfBirth, SimpleDateFormat dateOfReg,
-                 String role, long id) {
+
+    public UserAccount(String name, String lastname, String middlename,
+                    SimpleDateFormat dateOfBirth, SimpleDateFormat dateOfReg,
+                    String[] role, long id) {
         this.name = name;
         this.lastname = lastname;
         this.middlename = middlename;
         this.dateOfBirth = dateOfBirth;
         this.dateOfReg = dateOfReg;
-        this.role = role;
         this.id = id;
+
+        this.role = new ArrayList<String>();
+            if(role != null){
+                for(String r : role){
+                    this.role.add(r);
+                }
+            }
+
     }
 
     public String getName() {
@@ -66,11 +76,11 @@ public class Users {
         this.dateOfReg = dateOfReg;
     }
 
-    public String getRole() {
+    public List<String> getRole() {
         return role;
     }
 
-    public void setRole(String role) {
+    public void setRole(List<String> role) {
         this.role = role;
     }
 
@@ -82,5 +92,13 @@ public class Users {
         this.id = id;
     }
 
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return null;
+    }
 
+    @Override
+    public String getPassword() {
+        return null;
+    }
 }
