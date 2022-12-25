@@ -3,7 +3,9 @@ package dto;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-
+/*
+* В этом packedge ничто не относится к ДЗ и относится к свободнопу полету фантазии, может быть в последствии перекачующее
+* */
 public class UserDto {
  private LocalDateTime dtRegistration;
  private NewUserDto user;

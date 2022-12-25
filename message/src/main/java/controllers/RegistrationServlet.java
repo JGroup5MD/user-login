@@ -14,12 +14,22 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Map;
 
+/*
+* 2. Написать сервлет /api/user на который будут отправляться данные для регистрации при помощи POST запроса:
+Логин\Пароль
+ФИО
+Дата рождения
+* */
+
 @WebServlet(name = "RegistrationServlet", urlPatterns = "/api/user")
 public class RegistrationServlet extends HttpServlet {
 
     private final String LOGIN_PARAM_NAME = "login";
     private final String PASSWORD_PARAM_NAME = "password";
-    private final String NAME_PARAM_NAME = "ФИО";
+    private final String PASSWORD_CONFIRM_PARAM_NAME = "passwordConfirm";
+    private final String NAME_PARAM_NAME = "Name";
+    private final String MIDNAME_PARAM_NAME = "MiddleName";
+    private final String LASTNAME_PARAM_NAME = "LastName";
     private final String DATEOFBIRTH_PARAM_NAME = "date_of_birth";
 
     private final IRegistrationService service;
@@ -34,24 +44,35 @@ public class RegistrationServlet extends HttpServlet {
 
         Map<String, String[]> parameterMap = req.getParameterMap();
 
-        String[] name = parameterMap.get(NAME_PARAM_NAME);
+        String name = req.getParameter(NAME_PARAM_NAME);
+        String middleName = req.getParameter(MIDNAME_PARAM_NAME);
+        String lastName = req.getParameter(LASTNAME_PARAM_NAME);
         String[] login = parameterMap.get(LOGIN_PARAM_NAME);
         String[] password = parameterMap.get(PASSWORD_PARAM_NAME);
+        String[] passwordConfirm = parameterMap.get(PASSWORD_CONFIRM_PARAM_NAME);
         String dateOfBirth = req.getParameter(DATEOFBIRTH_PARAM_NAME);
 
+        if (name.isEmpty() || lastName.isEmpty() || dateOfBirth.isEmpty()){
+            throw new IllegalArgumentException("Один из обязательных параментров не заполнен");
+        }
+
+        if(!password.equals(passwordConfirm)){
+            throw new IllegalArgumentException("Пароли не совпадают");
+        }
         String loginRaw = (login == null) ? null : login[0];
-        if(loginRaw == null || login.length > 1) {
+        if (loginRaw == null || login.length > 1) {
             throw new IllegalArgumentException("Должен быть указан один логин");
         }
 
-        String passwordRow = (password == null) ? null : password[0];
-        if(passwordRow == null || password.length > 1){
+        String passwordRaw = (password == null) ? null : password[0];
+        if (passwordRaw == null || password.length > 1) {
             throw new IllegalArgumentException("Должен быть один пароль");
         }
 
         SimpleDateFormat format = new SimpleDateFormat("yyyy/mm/dd"); //паттерн потом обозначить в jsp
+        Date parse;
         try {
-            Date parse = format.parse(dateOfBirth);
+            parse = format.parse(dateOfBirth);
         } catch (ParseException e) {
             throw new RuntimeException(e);
         }
@@ -59,8 +80,17 @@ public class RegistrationServlet extends HttpServlet {
 
         NewUserDto.UserBuilder builder =
                 NewUserDto.UserBuilder.create()
-                        .setId(1)
-                        .se
+                        .setName(name)
+                        .setMiddleName(middleName)
+                        .setLastName(lastName)
+                        .setDateOfBirth(parse)
+                        .setLogin(loginRaw)
+                        .setPassword(passwordRaw);
+
+        this.service.save(builder.build());
+
+
+
 
 
        /* req.setAttribute("userName", name);

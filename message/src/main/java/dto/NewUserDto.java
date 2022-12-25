@@ -2,32 +2,40 @@ package dto;
 
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Date;
 
+/*
+* 1. Сущность Пользователь имеет следующие поля
+Логин
+Пароль
+ФИО
+Дата рождения
+Дата регистрации
+Роль (Пользователь\Админ)
+* */
 public class NewUserDto {
     private String name;
-    private String middlename;
-    private String lastname;
-    private SimpleDateFormat dateOfBirht;
-    private SimpleDateFormat dateOfRegistration;
+    private String middleName;
+    private String lastName;
+    private Date dateOfBirht;
+    private Date dateOfRegistration;
     private String login;
     private String password;
     private String[] roles;
-    private int id;
 
 
-    public NewUserDto(int id, String name, String middlename,
-                      String lastname, SimpleDateFormat dateOfBirht, String login,
-                      String password, String[] roles,
-                      SimpleDateFormat dateOfRegistration) {
+
+    public NewUserDto(String name, String middleName,
+                      String lastName, Date dateOfBirht, String login,
+                      String password) {
         this.name = name;
-        this.middlename = middlename;
-        this.lastname = lastname;
+        this.middleName = middleName;
+        this.lastName = lastName;
         this.dateOfBirht = dateOfBirht;
-        this.dateOfRegistration = dateOfRegistration;
+    //    this.dateOfRegistration = dateOfRegistration;
         this.login = login;
         this.password = password;
-        this.roles = roles;
-        this.id = id;
+    //    this.roles = roles;
     }
 
     public String getName() {
@@ -38,37 +46,37 @@ public class NewUserDto {
         this.name = name;
     }
 
-    public String getMiddlename() {
-        return middlename;
+    public String getMiddleName() {
+        return middleName;
     }
 
-    public void setMiddlename(String middlename) {
-        this.middlename = middlename;
+    public void setMiddleName(String middleName) {
+        this.middleName = middleName;
     }
 
-    public String getLastname() {
-        return lastname;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
-    public SimpleDateFormat getDateOfBirht() {
+    public Date getDateOfBirht() {
         return dateOfBirht;
     }
 
-    public void setDateOfBirht(SimpleDateFormat dateOfBirht) {
+    public void setDateOfBirht(Date dateOfBirht) {
         this.dateOfBirht = dateOfBirht;
     }
 
-    public SimpleDateFormat getDateOfRegistration() {
+ /*   public SimpleDateFormat getDateOfRegistration() {
         return dateOfRegistration;
     }
 
-    public void setDateOfRegistration(SimpleDateFormat dateOfRegistration) {
+    public void setDateOfRegistration(Date dateOfRegistration) {
         this.dateOfRegistration = dateOfRegistration;
-    }
+    }*/
 
     public String getLogin() {
         return login;
@@ -94,24 +102,17 @@ public class NewUserDto {
         this.roles = roles;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public static class UserBuilder {
         private String name;
-        private String middlename;
-        private String lastname;
-        private SimpleDateFormat dateOfBirht;
-        private SimpleDateFormat dateOfRegistration;
+        private String middleName;
+        private String lastName;
+        private Date dateOfBirht;
+  //      private Date dateOfRegistration;
         private String login;
         private String password;
-        private String[] roles;
-        private int id;
+    //    private String[] roles;
+
 
 
 
@@ -123,13 +124,18 @@ public class NewUserDto {
         }
 
 
-        public UserBuilder setId(int id) {
-            this.id = id;
-            return this;
-        }
-        
         public UserBuilder setName(String name) {
             this.name = name;
+            return this;
+        }
+
+        public UserBuilder setMiddleName(String middleName){
+            this.middleName = middleName;
+            return this;
+        }
+
+        public UserBuilder setLastName(String lastName){
+            this.lastName = lastName;
             return this;
         }
 
@@ -142,7 +148,7 @@ public class NewUserDto {
             this.password = password;
             return this;
         }
-
+/*
         public UserBuilder setRoles(String[] roles) {
             this.roles = roles;
             return this;
@@ -152,11 +158,21 @@ public class NewUserDto {
             this.roles = Arrays.copyOf(this.roles, this.roles.length + 1);
             this.roles[this.roles.length - 1] = role;
             return this;
+        } */
+
+        public UserBuilder setDateOfBirth(Date dateOfBirth) {
+            this.dateOfBirht = dateOfBirth;
+            return this;
+        }
+
+        public UserBuilder addDateOfBirth(Date dateOfBirth) {
+            this.dateOfBirht = dateOfBirth;
+            return this;
         }
 
         public NewUserDto build() {
-            return new NewUserDto(id, name, middlename, lastname, dateOfBirht, login,
-                    password, roles, dateOfRegistration);
+            return new NewUserDto(name, middleName, lastName, dateOfBirht, login,
+                    password);
         }
     }
 
