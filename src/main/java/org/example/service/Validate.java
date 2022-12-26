@@ -2,10 +2,10 @@ package org.example.service;
 
 import org.example.DAO.UserDAO;
 import org.example.DTO.CredentialsDTO;
-
+import org.example.DTO.DatesDTO;
 import org.example.DTO.MessageDTO;
 import org.example.DTO.UserDTO;
-
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.regex.Pattern;
 
@@ -14,6 +14,7 @@ public class Validate {
     private UserDAO userDAO;
     private MessageDTO message;
     private CredentialsDTO credentials;
+    private DatesDTO datesDTO;
 
 
     public void validateUSER(UserDTO user){
@@ -48,8 +49,6 @@ public class Validate {
                     "Введите фамилию пользователя");
         }
 
-
-
         if(user.getMidlName()==null||user.getMidlName().isEmpty()){
             throw new IllegalArgumentException("вы не ввели name");
         }
@@ -58,7 +57,6 @@ public class Validate {
                     "Введите имя");
         }
 
-
         if(user.getLastName()==null||user.getLastName().isEmpty()){
             throw new IllegalArgumentException("вы не ввели name");
         }
@@ -66,8 +64,6 @@ public class Validate {
             throw new IllegalArgumentException("Не корректно ввели  данные о пользователе. " +
                     "Введите отчество");
         }
-
-
 
         if (user.getBirthDate().equals(LocalDate.of(0000,00,00)) ||
                 user.getBirthDate()==null){
@@ -92,6 +88,14 @@ public class Validate {
            throw new IllegalArgumentException("такого пароля нет - пройдите роцедуру регистрации");
         }
         return credentials;
+    }
+
+    public void validateDates(DatesDTO datesDTO) {
+
+        SimpleDateFormat formatForDateNow = new SimpleDateFormat(" yyyy.MM.dd ");
+        if (formatForDateNow.toPattern().length()==0||formatForDateNow.toPattern().isBlank()){
+        throw new IllegalArgumentException("вы не ввели дату рождения");
+    }
     }
 
 }

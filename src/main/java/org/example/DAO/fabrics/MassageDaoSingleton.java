@@ -14,7 +14,7 @@ public class MassageDaoSingleton {
             if (instance == null) {
                 synchronized (MassageDaoSingleton.class) {
                     if (instance == null) {
-                        instance = new IMessageDAO() {
+                        instance = new MessageDAO() {
                         };
                     }
                 }
