@@ -1,4 +1,4 @@
-package org.example.controllers;
+package org.example.controllers.web.servlets;
 
 import javax.servlet.annotation.WebServlet;
 

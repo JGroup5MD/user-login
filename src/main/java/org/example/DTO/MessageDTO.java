@@ -1,19 +1,22 @@
 package org.example.DTO;
 
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 public class MessageDTO {
-    public int DateOfSent;
-    public String sender;
+    private int DateOfSent;
+    private String sender;
 
-    public UserDTO recipient;
-    public  String message;
+    private UserDTO recipient;
+    private  String message;
+    private LocalDateTime timeSending;
 
-    public MessageDTO(int dateOfSent, String sender, UserDTO recipient, String message) {
+    public MessageDTO(int dateOfSent, String sender, UserDTO recipient, String message, LocalDateTime timeSending) {
         DateOfSent = dateOfSent;
         this.sender = sender;
         this.recipient = recipient;
         this.message = message;
+        this.timeSending = timeSending;
     }
 
     public int getDateOfSent() {
@@ -48,17 +51,27 @@ public class MessageDTO {
         this.message = message;
     }
 
+    public LocalDateTime getTimeSending() {
+        return timeSending;
+    }
+
+    public void setTimeSending(LocalDateTime timeSending) {
+        this.timeSending = timeSending;
+    }
+
     @Override
     public boolean equals(Object o) {
+
+
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         MessageDTO that = (MessageDTO) o;
-        return DateOfSent == that.DateOfSent && Objects.equals(sender, that.sender) && Objects.equals(recipient, that.recipient) && Objects.equals(message, that.message);
+        return DateOfSent == that.DateOfSent && Objects.equals(sender, that.sender) && Objects.equals(recipient, that.recipient) && Objects.equals(message, that.message) && Objects.equals(timeSending, that.timeSending);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(DateOfSent, sender, recipient, message);
+        return Objects.hash(DateOfSent, sender, recipient, message, timeSending);
     }
 
     @Override
@@ -68,6 +81,10 @@ public class MessageDTO {
                 ", sender='" + sender + '\'' +
                 ", recipient=" + recipient +
                 ", message='" + message + '\'' +
+                ", timeSending=" + timeSending +
                 '}';
     }
 }
+
+
+

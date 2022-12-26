@@ -1,4 +1,4 @@
-package org.example.controllers;
+package org.example.controllers.web.servlets;
 
 
 import org.example.DAO.UserDAO;
@@ -55,7 +55,6 @@ public class UserServlet extends HttpServlet {
         DatesDTO birthDateUser=(DatesDTO)session.getAttribute(birthDate);
         DatesDTO regDateUser=(DatesDTO)session.getAttribute(regDate);
         UserDAO userADD=new UserDAO();
-        userADD.getMapUser();
         PrintWriter out = resp.getWriter();
 
         if((boolean)session.getAttribute(null) ){

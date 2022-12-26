@@ -1,39 +1,79 @@
 package org.example.DAO;
 
+import org.example.DAO.API.IUserDAO;
 import org.example.DTO.DatesDTO;
 import org.example.DTO.UserDTO;
-import org.example.DAO.API.IUserDAO;
-import java.util.HashMap;
-import java.util.Map;
+import org.example.DTO.UserRole;
+
+import java.util.*;
 
 
 public class UserDAO implements IUserDAO {
-    private Map<Integer, UserDTO> mapUser=new HashMap<>();
 
-    @Override
-    public void add() {
-        UserDTO userDTO=new UserDTO("",
-                " ",
-                " ",
-                new DatesDTO(0,0,0),
-                new DatesDTO(0,0,0));
-        this.mapUser.put(1, new UserDTO("admin",
-                "1111",
-                "Шадрин Илья",
-                new DatesDTO(1998,10,12),
-                new DatesDTO(2022,12,18)));
-    }
-    @Override
-    public  Map<Integer, UserDTO> deliteUserFromMap(int key) {
-        Map<Integer, UserDTO>  deleted=new HashMap<>();
-        deleted.entrySet().removeIf(e->e.getKey()==key);
-        return deleted;
+    private final Map<Integer, UserDTO.UserBuilder> userMap = new HashMap<>();
+
+    public UserDAO() {
+        final UserDTO.UserBuilder ADMIN=new UserDTO.UserBuilder();
+        add("admin", "admin", "admin", "admin", "admin",null, UserRole.admin);
+        userMap.put(1, ADMIN);
     }
 
     @Override
-    public Map<Integer, UserDTO> getMapUser() {
-        add();
-        return this.mapUser;
+    public  List<UserDTO> add(String login,
+                    String password,
+                    String FirstName,
+                    String MidlName,
+                    String LastName,
+                    DatesDTO birthDate,
+                    UserRole role) {
+
+         List<UserDTO> BaseUser=new ArrayList<>();
+
+         for(UserDTO item: BaseUser){
+             if(!login.equals(BaseUser.contains(login))&&
+                !password.equals(BaseUser.contains(password)) &&
+                !FirstName.equals(BaseUser.contains(FirstName))&&
+                !MidlName.equals(BaseUser.contains(MidlName))&&
+                !LastName.equals(BaseUser.contains(LastName))&&
+                !birthDate.equals(BaseUser.contains(birthDate))&&
+                !role.equals(BaseUser.contains(role))){
+                 BaseUser.add(item);
+             }
+         }
+         return BaseUser;
     }
-}
+
+    @Override
+    public  Map<Integer, UserDTO.UserBuilder> deliteUserFromMap(int key) {
+        Map<Integer, UserDTO.UserBuilder> mapAutoDelete=new HashMap<>();
+        mapAutoDelete.entrySet().removeIf(e->e.getKey()==key);
+        return mapAutoDelete;
+    }
+
+    @Override
+    public Map<Integer, UserDTO.UserBuilder> getMapOfUser(Map<Integer, UserDTO.UserBuilder> userMap) {
+        return this.userMap;
+    }
+
+
+    @Override
+    public void deleteUser(int id, String login) {
+        Object desiredObject=new Object();
+        Iterable<? extends Map.Entry<Integer, UserDTO.UserBuilder>> entrySet = null;
+        for (Map.Entry<Integer,UserDTO.UserBuilder> pair : entrySet) {
+            if (desiredObject.equals(pair.getValue())) {
+                userMap.remove(id, login);
+            }
+        }
+     }
+
+    public UserRole Role(UserRole role){
+        if(userMap.containsKey(1)){
+            role=UserRole.user;
+        }else {
+            role=UserRole.admin;
+        }
+        return role;
+    }
+   }
 

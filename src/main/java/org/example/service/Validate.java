@@ -2,7 +2,7 @@ package org.example.service;
 
 import org.example.DAO.UserDAO;
 import org.example.DTO.CredentialsDTO;
-import org.example.DTO.DatesDTO;
+
 import org.example.DTO.MessageDTO;
 import org.example.DTO.UserDTO;
 
@@ -40,13 +40,34 @@ public class Validate {
                     " Допускается использовать  только цифры а также  заглавные и прописные буквы алфавитов");
         }
 
-        if(user.getName()==null||user.getName().isEmpty()){
+        if(user.getFirstName()==null||user.getFirstName().isEmpty()){
             throw new IllegalArgumentException("вы не ввели name");
         }
-        if(!user.getName().equals(String.format("************ ************ ***************"))){
+        if(!user.getFirstName().equals(String.format("************ "))){
             throw new IllegalArgumentException("Не корректно ввели  данные о пользователе. " +
-                    "Имя пользователя должно содержать имя, фамилию  и отчество");
+                    "Введите фамилию пользователя");
         }
+
+
+
+        if(user.getMidlName()==null||user.getMidlName().isEmpty()){
+            throw new IllegalArgumentException("вы не ввели name");
+        }
+        if(!user.getMidlName().equals(String.format("************ "))){
+            throw new IllegalArgumentException("Не корректно ввели  данные о пользователе. " +
+                    "Введите имя");
+        }
+
+
+        if(user.getLastName()==null||user.getLastName().isEmpty()){
+            throw new IllegalArgumentException("вы не ввели name");
+        }
+        if(!user.getLastName().equals(String.format(" ***************"))){
+            throw new IllegalArgumentException("Не корректно ввели  данные о пользователе. " +
+                    "Введите отчество");
+        }
+
+
 
         if (user.getBirthDate().equals(LocalDate.of(0000,00,00)) ||
                 user.getBirthDate()==null){
@@ -56,7 +77,7 @@ public class Validate {
 
     public void validateMessage(MessageDTO message) {
         if(message.getMessage()==null ||message.getMessage().length()<15){
-            throw new IllegalArgumentException("Вы пвтаетесь отправить пустое сообщение, сообщение не может быть короче 15 символов");
+            throw new IllegalArgumentException("Вы пытаетесь отправить пустое сообщение, сообщение не может быть короче 15 символов");
         }
         if(message.getRecipient()==null){
             throw  new IllegalArgumentException("вы не указали кто будет получателем сообщения");
