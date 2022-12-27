@@ -1,14 +1,14 @@
 package web.dao.api;
 
-import web.dto.UserDto;
+import web.model.User;
 
-import javax.management.relation.Role;
-import java.text.SimpleDateFormat;
 import java.util.List;
 
 public interface IUserDao {
 
-    void save(int id, UserDto user, List<Role> role, SimpleDateFormat regDate);
+    User findByUsername(String login);
 
-    List<UserDto> get();
+    void save(User user);
+
+    List<User> get();
 }

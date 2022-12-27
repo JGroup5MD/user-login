@@ -3,13 +3,10 @@ package web.dao;
 
 import web.appuser.UserAccount;
 import web.dao.api.IUserDao;
-import web.dto.UserDto;
-import javax.management.relation.Role;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import web.dto.NewUserDto;
+import web.model.User;
+
+import java.util.*;
 
 /*
 * 3. При регистрации у пользователя роль Пользователь, зарегистрировать пользователя, значит сохранить данные о нем в приложении
@@ -21,18 +18,32 @@ public class UserDao implements IUserDao {
 
     private static final Map<String, UserAccount> mapUser = new HashMap<>();
 
-    private List<UserDto> usersBase = new ArrayList<>();
+
+
+    @Override
+    public User findByUsername(String login) {
+        return null;
+    }
+
+    @Override
+    public void save(User user) {
+
+    }
+
 
 
 
     @Override
-    public void save(int id, UserDto user, List<Role> role, SimpleDateFormat regDate) {
-        this.usersBase.add(user);
+    public List<User> get() {
+        return this.users;
     }
 
-    @Override
-    public List<UserDto> get() {
-        return this.usersBase;
+
+    private List<User> users = new ArrayList<User>();
+
+    public UserDao(List<User> users) {
+        this.users = users;
     }
+
 
 }

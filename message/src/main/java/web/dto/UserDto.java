@@ -52,4 +52,12 @@ public class UserDto {
     public void setRole(List<String> role) {
         this.role = role;
     }
+
+    public static void main(String[] args) {
+        NewUserDto userNew = new NewUserDto("Nmae", "Middd", "Las", "lasvegas", "123qwe");
+        UserDto user = new UserDto(userNew);
+
+        System.out.println(userNew.toString());
+    }
+
 }

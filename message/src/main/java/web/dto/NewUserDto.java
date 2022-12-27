@@ -24,7 +24,7 @@ public class NewUserDto {
 
 
     public NewUserDto(String name, String middleName,
-                      String lastName, Date dateOfBirht, String login,
+                      String lastName, String login,
                       String password) {
         this.name = name;
         this.middleName = middleName;
@@ -35,6 +35,7 @@ public class NewUserDto {
         this.password = password;
     //    this.roles = roles;
     }
+
 
     public String getName() {
         return name;
@@ -169,10 +170,20 @@ public class NewUserDto {
         }
 
         public NewUserDto build() {
-            return new NewUserDto(name, middleName, lastName, dateOfBirht, login,
+            return new NewUserDto(name, middleName, lastName, login,
                     password);
         }
     }
 
-
+    @Override
+    public String toString() {
+        return "NewUserDto{" +
+                "name='" + name + '\'' +
+                ", middleName='" + middleName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", dateOfBirht=" + dateOfBirht +
+                ", login='" + login + '\'' +
+                ", password='" + password + '\'' +
+                '}';
+    }
 }

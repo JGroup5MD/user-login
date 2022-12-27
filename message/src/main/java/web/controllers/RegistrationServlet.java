@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.Map;
 
@@ -90,8 +91,9 @@ public class RegistrationServlet extends HttpServlet {
 
         this.service.save(builder.build());
 
+
         PrintWriter writer = resp.getWriter();
-        writer.write(builder.build().getLogin());
+        writer.write("Hello " + name);
 
 
        /* req.setAttribute("userName", name);
