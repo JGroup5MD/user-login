@@ -5,11 +5,13 @@ import org.example.DTO.CredentialsDTO;
 import org.example.DTO.DatesDTO;
 import org.example.DTO.MessageDTO;
 import org.example.DTO.UserDTO;
+import org.example.service.API.IValidate;
+
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.regex.Pattern;
 
-public class Validate {
+public class Validate implements IValidate {
     private UserDTO user;
     private UserDAO userDAO;
     private MessageDTO message;
@@ -44,7 +46,7 @@ public class Validate {
         if(user.getFirstName()==null||user.getFirstName().isEmpty()){
             throw new IllegalArgumentException("вы не ввели name");
         }
-        if(!user.getFirstName().equals(String.format("************ "))){
+        if(!user.getFirstName().equals(String.format("************"))){
             throw new IllegalArgumentException("Не корректно ввели  данные о пользователе. " +
                     "Введите фамилию пользователя");
         }
@@ -52,7 +54,7 @@ public class Validate {
         if(user.getMidlName()==null||user.getMidlName().isEmpty()){
             throw new IllegalArgumentException("вы не ввели name");
         }
-        if(!user.getMidlName().equals(String.format("************ "))){
+        if(!user.getMidlName().equals(String.format("************"))){
             throw new IllegalArgumentException("Не корректно ввели  данные о пользователе. " +
                     "Введите имя");
         }
@@ -60,7 +62,7 @@ public class Validate {
         if(user.getLastName()==null||user.getLastName().isEmpty()){
             throw new IllegalArgumentException("вы не ввели name");
         }
-        if(!user.getLastName().equals(String.format(" ***************"))){
+        if(!user.getLastName().equals(String.format("***************"))){
             throw new IllegalArgumentException("Не корректно ввели  данные о пользователе. " +
                     "Введите отчество");
         }
@@ -71,6 +73,7 @@ public class Validate {
     }
     }
 
+    @Override
     public void validateMessage(MessageDTO message) {
         if(message.getMessage()==null ||message.getMessage().length()<15){
             throw new IllegalArgumentException("Вы пытаетесь отправить пустое сообщение, сообщение не может быть короче 15 символов");
@@ -79,7 +82,7 @@ public class Validate {
             throw  new IllegalArgumentException("вы не указали кто будет получателем сообщения");
         }
     }
-
+    @Override
     public CredentialsDTO validateCREDENTIALS(CredentialsDTO credentials){
         if(!credentials.equals(user.getLogin())){
            throw  new IllegalArgumentException("такого логина - пройдите роцедуру регистрации");
@@ -89,7 +92,7 @@ public class Validate {
         }
         return credentials;
     }
-
+    @Override
     public void validateDates(DatesDTO datesDTO) {
 
         SimpleDateFormat formatForDateNow = new SimpleDateFormat(" yyyy.MM.dd ");

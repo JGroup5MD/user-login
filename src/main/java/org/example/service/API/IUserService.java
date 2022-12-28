@@ -7,6 +7,6 @@ import java.util.List;
 import java.util.Map;
 
 public interface IUserService {
-   List<UserDTO>get();
-   Map<Integer, UserDTO> getMapUser();
+   public List<UserDTO> get(List<UserDTO> list);
+   public Map<Integer, UserDTO> getMapUser(Map<Integer, UserDTO> map);
 }

@@ -3,6 +3,7 @@ package org.example.DAO;
 import org.example.DAO.API.IUserDAO;
 import org.example.DTO.DatesDTO;
 import org.example.DTO.UserDTO;
+import org.example.DTO.UserDTOsession;
 import org.example.DTO.UserRole;
 
 import java.util.*;
@@ -67,13 +68,18 @@ public class UserDAO implements IUserDAO {
         }
      }
 
-    public UserRole Role(UserRole role){
+    public  UserRole Role(UserRole role){
         if(userMap.containsKey(1)){
             role=UserRole.user;
         }else {
             role=UserRole.admin;
         }
         return role;
+    }
+    public UserDTOsession initSessionUser( UserDTOsession userDTO){
+        return new UserDTOsession(userDTO.getLogin(), userDTO.getPassword(),
+                userDTO.getFirstName(),userDTO.getMidlName(),userDTO.getLastName(),
+                userDTO.getBirthDate(),UserRole.user,userDTO.getRegistrationDate());
     }
    }
 

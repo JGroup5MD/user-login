@@ -1,17 +1,26 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Vitalik
-  Date: 19.12.2022
-  Time: 18:13
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="org.example.DAO.MessageDAO" %>
+<%@ page language="java" contentType= "text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <html>
 <head>
-    <title>Title</title>
-    <link rel="stylesheet" href="styles/w3.css">
+    <style>
+        {
+            width: 100%;
+            font-size: 14px;
+            text-align: center;
+            background: greenyellow;
+            padding: 10px 20px;
+            border-style: solid;
+            border-width: 0 1px 1px 0;
+            border-color: green;
+        }
+    </style>
+    <title>Message</title>
 </head>
-<body style="color:lightslategrey">
-
+<body>
+<<p> Recipient: ${paramValues.recipient}</p>
+<br><br>
+<p> Message: ${paramValues.message}</p>
+<br><br>
 </body>
 </html>
+

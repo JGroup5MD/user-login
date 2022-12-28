@@ -3,28 +3,19 @@ package org.example.DTO;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
-public class MessageDTO {
-    private int DateOfSent;
-    private String sender;
+public class MessageDTO  {
 
-    private UserDTO recipient;
+    private String sender;
+    private String recipient;
     private  String message;
     private LocalDateTime timeSending;
 
-    public MessageDTO(int dateOfSent, String sender, UserDTO recipient, String message, LocalDateTime timeSending) {
-        DateOfSent = dateOfSent;
+    public MessageDTO(String sender, String recipient,
+                      String message, LocalDateTime timeSending) {
         this.sender = sender;
         this.recipient = recipient;
         this.message = message;
         this.timeSending = timeSending;
-    }
-
-    public int getDateOfSent() {
-        return DateOfSent;
-    }
-
-    public void setDateOfSent(int dateOfSent) {
-        DateOfSent = dateOfSent;
     }
 
     public String getSender() {
@@ -35,11 +26,11 @@ public class MessageDTO {
         this.sender = sender;
     }
 
-    public UserDTO getRecipient() {
+    public String getRecipient() {
         return recipient;
     }
 
-    public void setRecipient(UserDTO recipient) {
+    public void setRecipient(String recipient) {
         this.recipient = recipient;
     }
 
@@ -62,24 +53,22 @@ public class MessageDTO {
     @Override
     public boolean equals(Object o) {
 
-
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         MessageDTO that = (MessageDTO) o;
-        return DateOfSent == that.DateOfSent && Objects.equals(sender, that.sender) && Objects.equals(recipient, that.recipient) && Objects.equals(message, that.message) && Objects.equals(timeSending, that.timeSending);
+        return Objects.equals(sender, that.sender) && Objects.equals(recipient, that.recipient) && Objects.equals(message, that.message) && Objects.equals(timeSending, that.timeSending);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(DateOfSent, sender, recipient, message, timeSending);
+        return Objects.hash(sender, recipient, message, timeSending);
     }
 
     @Override
     public String toString() {
         return "MessageDTO{" +
-                "DateOfSent=" + DateOfSent +
-                ", sender='" + sender + '\'' +
-                ", recipient=" + recipient +
+                "sender='" + sender + '\'' +
+                ", recipient='" + recipient + '\'' +
                 ", message='" + message + '\'' +
                 ", timeSending=" + timeSending +
                 '}';

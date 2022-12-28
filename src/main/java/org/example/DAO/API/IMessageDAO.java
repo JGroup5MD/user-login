@@ -4,10 +4,14 @@ import org.example.DTO.MessageDTO;
 
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Stream;
 
 public interface IMessageDAO {
-    public boolean getSender(String sender);
-    public boolean getRecipient(String recipient);
-    public Map<String, List<MessageDTO>> getAllmassege(String login);
-    public void add(MessageDTO message);
+
+    public List<MessageDTO> getAtSender(String sender);
+    public List<MessageDTO> getAtRecipient(String recipient);
+    public  List<MessageDTO> getAllmassege();
+    public <MessageDTO> void addToList(List<MessageDTO> listMessage, Stream<MessageDTO> source);
+
+
 }

@@ -6,7 +6,7 @@ import org.example.service.API.IMessageService;
 import org.example.service.MessageService;
 
 public class MassageServiceSingleton {
-    private volatile static IMessageService instance = null;
+    private volatile static MessageService instance = null;
 
     public MassageServiceSingleton() {
     }
@@ -15,7 +15,7 @@ public class MassageServiceSingleton {
         if (instance == null) {
             synchronized (MassageServiceSingleton.class) {
                 if (instance == null) {
-                    instance = new IMessageService() {
+                    instance = new MessageService(getInstance()) {
                     };
                 }
             }

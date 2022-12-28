@@ -1,3 +1,4 @@
+<%@ page import="org.example.DAO.CredentialsDAO" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -12,15 +13,16 @@
             border-width: 0 1px 1px 0;
             border-color: green;
         }
-    </style>
-    <title>Main</title>
 
+    </style>
+    <title>Autorisation</title>
 </head>
 <body>
-<h1>Hello!!!</h1>
-<br/><br/>
-<h3>Please, registration</h3>
-<%@include file="ui/signln.jsp" %>
+
+<p> Login: ${paramValues.login}</p>
+            <br><br>
+<p> Password: ${paramValues.password}</p>
+            <br><br>
+
 </body>
 </html>
-

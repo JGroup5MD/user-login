@@ -1,17 +1,23 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Vitalik
-  Date: 19.12.2022
-  Time: 18:14
-  To change this template use File | Settings | File Templates.
---%>
+<%@ page import="org.example.DAO.MessageDAO" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
-    <link rel="stylesheet" href="styles/w3.css">
+    <style>
+         {
+             width: 100%;
+             font-size: 14px;
+             text-align: center;
+             background: greenyellow;
+             padding: 10px 20px;
+             border-style: solid;
+             border-width: 0 1px 1px 0;
+             border-color: green;
+        }
+    </style>
+    <title>Chats</title>
+
 </head>
-<body style="color:lightslategrey">
+<body>
 
 </body>
 </html>

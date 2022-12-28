@@ -3,7 +3,6 @@ package org.example.controllers.web.servlets;
 
 import org.example.DAO.UserDAO;
 import org.example.DTO.DatesDTO;
-import org.example.DTO.UserDTO;
 import org.example.service.API.IUserService;
 import org.example.service.fabrics.UserServiceSingleton;
 
@@ -16,15 +15,14 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 
 import static javax.swing.UIManager.get;
 
 @WebServlet (name="UserServlet", urlPatterns = "/user")
-public class UserServlet extends HttpServlet {
+public class UserServletRegistration extends HttpServlet {
     private final IUserService userService;
 
-    public UserServlet() {
+    public UserServletRegistration() {
         this.userService = UserServiceSingleton.getInstance();
     }
 
@@ -45,6 +43,8 @@ public class UserServlet extends HttpServlet {
         String name=req.getParameter("name");
         String birthDate=req.getParameter("birthDate");
         String regDate=req.getParameter("regDate");
+
+
 
         HttpSession session = req.getSession();
         session.setMaxInactiveInterval(-1);
