@@ -1,6 +1,6 @@
 package web.dao.api;
 
-import web.model.Role;
+import web.dto.Role;
 
 import java.util.List;
 

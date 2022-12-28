@@ -1,14 +1,14 @@
 package web.dao.api;
 
-import web.model.User;
+import web.dto.NewUserDto;
+import web.dto.UserDto;
+import web.service.UserDetails;
 
 import java.util.List;
 
 public interface IUserDao {
 
-    User findByUsername(String login);
+    void save(UserDto user);
 
-    void save(User user);
-
-    List<User> get();
+    List<UserDto> get();
 }

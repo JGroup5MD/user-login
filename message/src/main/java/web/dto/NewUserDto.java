@@ -1,5 +1,7 @@
 package web.dto;
 
+import web.service.PassEncBase;
+
 import java.util.Date;
 
 /*
@@ -15,25 +17,27 @@ public class NewUserDto {
     private String name;
     private String middleName;
     private String lastName;
-    private Date dateOfBirht;
-  //  private Date dateOfRegistration;
+    private String dateOfBirht;
+
     private String login;
     private String password;
- //   private String[] roles;
+
+    private Role role;
+    private Date dateOfRegistration;
 
 
 
     public NewUserDto(String name, String middleName,
-                      String lastName, String login,
+                      String lastName, String dateOfBirht, String login,
                       String password) {
         this.name = name;
         this.middleName = middleName;
         this.lastName = lastName;
         this.dateOfBirht = dateOfBirht;
-    //    this.dateOfRegistration = dateOfRegistration;
+
         this.login = login;
         this.password = password;
-    //    this.roles = roles;
+
     }
 
 
@@ -61,21 +65,21 @@ public class NewUserDto {
         this.lastName = lastName;
     }
 
-    public Date getDateOfBirht() {
+    public String getDateOfBirht() {
         return dateOfBirht;
     }
 
-    public void setDateOfBirht(Date dateOfBirht) {
+    public void setDateOfBirht(String dateOfBirht) {
         this.dateOfBirht = dateOfBirht;
     }
 
- /*   public SimpleDateFormat getDateOfRegistration() {
+    public Date getDateOfRegistration() {
         return dateOfRegistration;
     }
 
     public void setDateOfRegistration(Date dateOfRegistration) {
         this.dateOfRegistration = dateOfRegistration;
-    }*/
+    }
 
     public String getLogin() {
         return login;
@@ -90,29 +94,25 @@ public class NewUserDto {
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        this.password = PassEncBase.generateSecurePassword(getPassword(), PassEncBase.getSaltvalue(30));
     }
 
-/*    public String[] getroles() {
-        return this.roles;
+    public Role getRole() {
+        return this.role;
     }
 
-    public void setroles(String[] roles) {
-        this.roles = roles;
-    }*/
+    public void setRole(Role role) {
+        this.role = role;
+    }
 
 
     public static class UserBuilder {
         private String name;
         private String middleName;
         private String lastName;
-        private Date dateOfBirht;
-  //      private Date dateOfRegistration;
+        private String dateOfBirht;
         private String login;
         private String password;
-    //    private String[] roles;
-
-
 
 
         private UserBuilder(){
@@ -147,30 +147,19 @@ public class NewUserDto {
             this.password = password;
             return this;
         }
-/*
-        public UserBuilder setRoles(String[] roles) {
-            this.roles = roles;
-            return this;
-        }
 
-        public UserBuilder addRole(String role) {
-            this.roles = Arrays.copyOf(this.roles, this.roles.length + 1);
-            this.roles[this.roles.length - 1] = role;
-            return this;
-        } */
-
-        public UserBuilder setDateOfBirth(Date dateOfBirth) {
+        public UserBuilder setDateOfBirth(String dateOfBirth) {
             this.dateOfBirht = dateOfBirth;
             return this;
         }
 
-        public UserBuilder addDateOfBirth(Date dateOfBirth) {
+        public UserBuilder addDateOfBirth(String dateOfBirth) {
             this.dateOfBirht = dateOfBirth;
             return this;
         }
 
         public NewUserDto build() {
-            return new NewUserDto(name, middleName, lastName, login,
+            return new NewUserDto(name, middleName, lastName, dateOfBirht, login,
                     password);
         }
     }

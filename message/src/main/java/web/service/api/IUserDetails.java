@@ -4,5 +4,5 @@ import web.service.UserDetails;
 
 public interface IUserDetails {
 
-    UserDetails loadUserByLogin(String login);
+ //   UserDetails loadUserByLogin(String login);
 }

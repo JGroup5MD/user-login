@@ -1,63 +1,48 @@
 package web.dto;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
-/*
-* В этом packedge ничто не относится к ДЗ и относится к свободнопу полету фантазии, может быть в последствии перекачующее
-* */
 public class UserDto {
- private LocalDateTime dtRegistration;
- private NewUserDto user;
- private int id;
+    private LocalDateTime dtCreate;
+    private Role role;
+    private NewUserDto newUserDto;
 
- List<String> role = new ArrayList<>();
-
-    public UserDto(NewUserDto user) {
-        this.id = id;
-        this.dtRegistration = LocalDateTime.now();
-        this.user = user;
-        this.role = role;
+    public UserDto(NewUserDto newUserDto) {
+        this.dtCreate = LocalDateTime.now();
+        this.role = Role.USER;
+        this.newUserDto = newUserDto;
     }
 
-    public LocalDateTime getDtRegistration(){
-        return dtRegistration;
+    public LocalDateTime getDtCreate() {
+        return dtCreate;
     }
 
-    public void setDtRegistration(LocalDateTime dtRegistration) {
-        this.dtRegistration = dtRegistration;
+    public void setDtCreate(LocalDateTime dtCreate) {
+        this.dtCreate = dtCreate;
     }
 
-    public NewUserDto getUser() {
-        return user;
-    }
-
-    public void setUser(NewUserDto user) {
-        this.user = user;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public List<String> getRole() {
+    public Role getRole() {
         return role;
     }
 
-    public void setRole(List<String> role) {
+    public void setRole(Role role) {
         this.role = role;
     }
 
-    public static void main(String[] args) {
-        NewUserDto userNew = new NewUserDto("Nmae", "Middd", "Las", "lasvegas", "123qwe");
-        UserDto user = new UserDto(userNew);
-
-        System.out.println(userNew.toString());
+    public NewUserDto getNewUserDto() {
+        return newUserDto;
     }
 
+    public void setNewUserDto(NewUserDto newUserDto) {
+        this.newUserDto = newUserDto;
+    }
+
+    @Override
+    public String toString() {
+        return "UserDto{" +
+                "dtCreate=" + dtCreate +
+                ", role=" + role +
+                ", newUserDto=" + newUserDto +
+                '}';
+    }
 }

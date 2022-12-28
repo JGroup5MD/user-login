@@ -12,7 +12,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.Map;
 
@@ -71,13 +70,13 @@ public class RegistrationServlet extends HttpServlet {
             throw new IllegalArgumentException("Должен быть один пароль");
         }
 
-        SimpleDateFormat format = new SimpleDateFormat("yyyy/mm/dd"); //паттерн потом обозначить в jsp
+   /*     SimpleDateFormat format = new SimpleDateFormat("yyyy/mm/dd"); //паттерн потом обозначить в jsp
         Date parse;
         try {
-            parse = format.parse(dateOfBirth);
+           parse = format.parse(dateOfBirth);
         } catch (ParseException e) {
             throw new RuntimeException(e);
-        }
+        }*/
 
 
         NewUserDto.UserBuilder builder =
@@ -85,7 +84,7 @@ public class RegistrationServlet extends HttpServlet {
                         .setName(name)
                         .setMiddleName(middleName)
                         .setLastName(lastName)
-                        .setDateOfBirth(parse)
+                        .setDateOfBirth(dateOfBirth)
                         .setLogin(loginRaw)
                         .setPassword(passwordRaw);
 
@@ -98,6 +97,18 @@ public class RegistrationServlet extends HttpServlet {
 
        /* req.setAttribute("userName", name);
         doGet(req, resp);*/
+    }
+
+    public static void main(String[] args) {
+        String dateOfBirth = "1999/10/10";
+        SimpleDateFormat format = new SimpleDateFormat("yyyy/mm/dd"); //паттерн потом обозначить в jsp
+        Date parse;
+        try {
+            parse = format.parse(dateOfBirth);
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
+        System.out.println(parse);
     }
 
 

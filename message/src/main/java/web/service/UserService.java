@@ -1,12 +1,15 @@
 package web.service;
 
+import web.dao.UserDao;
 import web.dao.api.IRoleDao;
 import web.dao.api.IUserDao;
+import web.dto.NewUserDto;
+import web.dto.Role;
 import web.dto.UserDto;
-import web.model.Role;
-import web.model.User;
 import web.service.api.IUserService;
 
+import java.time.Instant;
+import java.util.Date;
 import java.util.List;
 
 public class UserService implements IUserService {
@@ -14,23 +17,21 @@ public class UserService implements IUserService {
     private IUserDao userDao;
     private IRoleDao roleDao;
 
+    public UserService(IUserDao userDao) {
+        this.userDao = userDao;
+    }
 
     @Override
-    public void save(User user) {
+    public void save(NewUserDto user) {
         user.setPassword(PassEncBase.generateSecurePassword(user.getPassword(), PassEncBase.getSaltvalue(30)));
-        user.setRole(Role.USER);
-        userDao.save(user);
+        UserDto userDto = new UserDto(user);
+        this.userDao.save(userDto);
     }
 
 
 
     @Override
-    public User findByUsername(String login) {
-        return userDao.findByUsername(login);
-    }
-
-    @Override
-    public List<UserDto> get() {
+    public List<NewUserDto> get() {
         return null;
     }
 
@@ -39,17 +40,7 @@ public class UserService implements IUserService {
         return false;
     }
 
-    public static void main(String[] args) {
-        User me = new User();
-        me.setId(10L);
-        me.setUsername("Noah");
-        me.setPassword("123qwe");
-        me.setConfirmPass("123qwe");
-        System.out.println(me.getUsername());
 
-        UserService serv = new UserService();
-        serv.save(me);
-    }
 
 
 }
