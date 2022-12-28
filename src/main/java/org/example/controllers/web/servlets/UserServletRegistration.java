@@ -40,7 +40,9 @@ public class UserServletRegistration extends HttpServlet {
 
         String login=req.getParameter("login");
         String password=req.getParameter("password");
-        String name=req.getParameter("name");
+        String FirstName=req.getParameter("Fname");
+        String MidlName=req.getParameter("Mname");
+        String LastName=req.getParameter("Lname");
         String birthDate=req.getParameter("birthDate");
         String regDate=req.getParameter("regDate");
 
@@ -50,11 +52,8 @@ public class UserServletRegistration extends HttpServlet {
         session.setMaxInactiveInterval(-1);
 
         String loginUser=(String)session.getAttribute(login);
-        String passwordUser=(String)session.getAttribute(password);
-        String nameUser=(String)session.getAttribute(name);
-        DatesDTO birthDateUser=(DatesDTO)session.getAttribute(birthDate);
+        String nameUser=(String)session.getAttribute(FirstName+" "+MidlName+" "+LastName);
         DatesDTO regDateUser=(DatesDTO)session.getAttribute(regDate);
-        UserDAO userADD=new UserDAO();
         PrintWriter out = resp.getWriter();
 
         if((boolean)session.getAttribute(null) ){

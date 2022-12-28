@@ -21,17 +21,19 @@ public class LoginService implements ILoginService {
     }
     @Override
     public void NotLogin(String login){
-        if(!list.contains(login)){
+        if(!list.contains(login)&&login==null){
             throw new IllegalArgumentException("такого логина не существует пройлите регистраци");
 
         }
     }
     @Override
     public void NotPassword(String password){
-        if(!list.contains(password)){
+        if(!list.contains(password)&&password==null){
             throw new IllegalArgumentException("такого логина не существует пройлите регистраци");
         }
     }
+
+
     @Override
     public List<UserDTO> NotUserToRegistration(String loginUser, String passwordUser){
         if(loginUser.equals(dto.getLogin())&&passwordUser.equals(dto.getPassword())){
@@ -45,5 +47,12 @@ public class LoginService implements ILoginService {
             dao.add(login,password,FirstName,MidlName,LastName,birthDate,role);
         }
         return list;
+    }
+
+    public String SpecificUser(String login, String password){
+        if(list.contains(login)&&list.contains(password)){
+           dao.Role(UserRole.user);
+        }
+        return (dto.getFirstName() + dto.getMidlName());
     }
 }

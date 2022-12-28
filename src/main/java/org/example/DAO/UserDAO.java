@@ -3,7 +3,7 @@ package org.example.DAO;
 import org.example.DAO.API.IUserDAO;
 import org.example.DTO.DatesDTO;
 import org.example.DTO.UserDTO;
-import org.example.DTO.UserDTOsession;
+import org.example.DTO.ActivUserSession;
 import org.example.DTO.UserRole;
 
 import java.util.*;
@@ -15,7 +15,7 @@ public class UserDAO implements IUserDAO {
 
     public UserDAO() {
         final UserDTO.UserBuilder ADMIN=new UserDTO.UserBuilder();
-        add("admin", "admin", "admin", "admin", "admin",null, UserRole.admin);
+        add("admin", "1111admin1111", "admin", "admin", "admin",null, UserRole.admin);
         userMap.put(1, ADMIN);
     }
 
@@ -69,17 +69,16 @@ public class UserDAO implements IUserDAO {
      }
 
     public  UserRole Role(UserRole role){
-        if(userMap.containsKey(1)){
+        if(!userMap.containsKey(1)||userMap.containsValue("1111admin1111")){
             role=UserRole.user;
         }else {
             role=UserRole.admin;
         }
         return role;
     }
-    public UserDTOsession initSessionUser( UserDTOsession userDTO){
-        return new UserDTOsession(userDTO.getLogin(), userDTO.getPassword(),
-                userDTO.getFirstName(),userDTO.getMidlName(),userDTO.getLastName(),
-                userDTO.getBirthDate(),UserRole.user,userDTO.getRegistrationDate());
+    public ActivUserSession initSessionUser(ActivUserSession userSession){
+        return new ActivUserSession(userSession.getLogin(), userSession.getPassword(),
+               UserRole.user,userSession.getTimeStartSession());
     }
    }
 
