@@ -42,8 +42,8 @@ public class UserServletRegistration extends HttpServlet {
         String FirstName=req.getParameter("Fname");
         String MidlName=req.getParameter("Mname");
         String LastName=req.getParameter("Lname");
-        LocalDate birthDate=req.getParameter("birthDate");
-        LocalDate regDate=req.getParameter("regDate");
+        String birthDate=req.getParameter("birthDate");
+
 
 
 

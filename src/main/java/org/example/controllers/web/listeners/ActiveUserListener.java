@@ -13,6 +13,7 @@ public class ActiveUserListener implements HttpSessionAttributeListener, HttpSes
     @Override
     public void attributeAdded(HttpSessionBindingEvent  sbe) {
         if(sbe.getName().equals("user")){
+            ISer
 
         }
 
