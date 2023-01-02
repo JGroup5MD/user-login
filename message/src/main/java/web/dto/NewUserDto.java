@@ -24,6 +24,8 @@ public class NewUserDto {
 
     private Role role;
     private Date dateOfRegistration;
+    private static String salt = PassEncBase.getSaltvalue(5);
+
 
 
 
@@ -36,7 +38,7 @@ public class NewUserDto {
         this.dateOfBirht = dateOfBirht;
 
         this.login = login;
-        this.password = password;
+        this.password = PassEncBase.generateSecurePassword(password, salt);
 
     }
 
@@ -89,12 +91,13 @@ public class NewUserDto {
         this.login = login;
     }
 
+
     public String getPassword() {
         return password;
     }
 
     public void setPassword(String password) {
-        this.password = PassEncBase.generateSecurePassword(getPassword(), PassEncBase.getSaltvalue(30));
+        this.password = PassEncBase.generateSecurePassword(password, salt);
     }
 
     public Role getRole() {
@@ -105,6 +108,9 @@ public class NewUserDto {
         this.role = role;
     }
 
+    public String getSalt() {
+        return salt;
+    }
 
     public static class UserBuilder {
         private String name;
@@ -144,7 +150,7 @@ public class NewUserDto {
         }
 
         public UserBuilder setPassword(String password) {
-            this.password = password;
+            this.password = PassEncBase.generateSecurePassword(password, salt);
             return this;
         }
 
@@ -162,6 +168,19 @@ public class NewUserDto {
             return new NewUserDto(name, middleName, lastName, dateOfBirht, login,
                     password);
         }
+
+        @Override
+        public String toString() {
+            return "UserBuilder{" +
+                    "name='" + name + '\'' +
+                    ", middleName='" + middleName + '\'' +
+                    ", lastName='" + lastName + '\'' +
+                    ", dateOfBirht='" + dateOfBirht + '\'' +
+                    ", login='" + login + '\'' +
+                    ", password='" + password + '\'' +
+                    ", salt='" + salt + '\'' +
+                    '}';
+        }
     }
 
     @Override
@@ -173,6 +192,7 @@ public class NewUserDto {
                 ", dateOfBirht=" + dateOfBirht +
                 ", login='" + login + '\'' +
                 ", password='" + password + '\'' +
+                ", salt='" + salt + '\'' +
                 '}';
     }
 }

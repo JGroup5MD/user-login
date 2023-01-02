@@ -5,8 +5,6 @@ import web.dao.api.IUserDao;
 import web.dto.NewUserDto;
 import web.dto.Role;
 import web.dto.UserDto;
-import web.service.PassEncBase;
-import web.service.UserService;
 
 import java.time.LocalDateTime;
 import java.util.*;
@@ -19,20 +17,18 @@ import java.util.*;
 
 public class UserDao implements IUserDao {
 
-    private List<UserDto> users = new ArrayList<>();
+    private List<UserDto> registeredUsers = new ArrayList<>();
 
-    public UserDao(List<UserDto> users) {
-        this.users = users;
-    }
 
     @Override
     public void save(UserDto user) {
-        this.users.add(user);
+        this.registeredUsers.add(user);
     }
 
-    @Override
+
     public List<UserDto> get() {
-        return this.users;
+        return this.registeredUsers;
+
     }
 
     UserDto adminUser = new UserDto(new NewUserDto("Вася",
@@ -40,22 +36,49 @@ public class UserDao implements IUserDao {
             "Тяпкин",
             "1988/02/02",
             "admin",
-            "iJAaAd4uz7L2ynDFpqRAJiWyu8QD5BdpHp/getJjlBo="));
+            "123qwe"));
 
     public UserDao() {
         adminUser.setRole(Role.ADMIN);
         adminUser.setDtCreate(LocalDateTime.now());
-        this.users.add(0, adminUser);
+        this.registeredUsers.add(0, adminUser);
 
     }
-
-
 
     @Override
     public String toString() {
         return "UserDao{" +
-                "users=" + users +
+                "users=" + registeredUsers +
                 '}';
     }
+
+/*    public static void main(String[] args) {
+        NewUserDto user = new NewUserDto("M",
+                "A", "Z", "199", "masha", "123qwe");
+
+        NewUserDto.UserBuilder builder =
+                NewUserDto.UserBuilder.create()
+                        .setName("M")
+                        .setMiddleName("A")
+                        .setLastName("Z")
+                        .setDateOfBirth("1999/02/02")
+                        .setLogin("login")
+                        .setPassword("123qwe");
+
+        builder.build();
+
+        UserDto userReg = new UserDto(builder.build());
+  //      System.out.println(userReg);
+
+       UserDao userBase = new UserDao();
+        userBase.save(userReg);
+
+        userBase.get();
+        System.out.println(userBase);
+   //     System.out.println(userBase.get().get(1));
+
+   //     System.out.println(userBase.getPassword());
+
+    }*/
 
 }
