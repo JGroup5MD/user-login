@@ -1,15 +1,14 @@
 package org.example.service;
 
-import org.example.DAO.UserDAO;
-
-import org.example.DTO.LoginDTO;
-import org.example.DTO.UserDTO;
-import org.example.DTO.UserRole;
+import org.example.DTO.*;
 import org.example.service.API.ILoginService;
 import org.example.service.API.IMessageService;
 import org.example.service.API.IUserService;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 
 
 public class StatisticsService {
@@ -17,7 +16,6 @@ public class StatisticsService {
     private final IMessageService ms;
     private final ILoginService ls;
     private final IUserService us;
-
     private  final UserRole role;
 
     public StatisticsService(IMessageService ms, ILoginService ls, IUserService us, UserRole role) {
@@ -25,33 +23,36 @@ public class StatisticsService {
         this.ls = ls;
         this.us = us;
         this.role = role;
-
     }
 
-     public List<UserDTO> getAllUser(List<UserDTO> dto){
-       return dto;
+    public LoginDTO getActiveUsers(UserRole role){
+        if(Objects.equals(role,UserRole.admin)){
+        return  ls.getActiveUsers();
+    }
+        return  null;
     }
 
-    public int getActiveUser(List<UserDAO> dao, String login, String password){
-        if(dao.contains(login) && dao.contains(password)){
-
-        }
-        return dao.size();
+    public  Map<Integer, List<MessageDTO>> getAllMessage(List<String> message){
+        Map<Integer, List<MessageDTO>> mapMessage =new HashMap<>();
+        if(Objects.equals(role,UserRole.admin)){
+            return ms.getAllMessage(mapMessage);
+    }
+        return null;
     }
 
-
-    public List<String> getAllMessage(List<String> message){
-
-        return message;
+    public void gettAllUsers(UserRole role){
+        if(Objects.equals(role,UserRole.admin)){
+        us.AllUsers();
+    }
     }
 
-    public List<UserDTO> addActiveUser(List<UserDTO> dto, String login, String password) {
-        List<LoginDTO> activUser=null;
-             if(dto.contains(login)&&dto.contains(password)){
-
-             }
-                return dto;
+    public void addMessage(List<MessageDTO> message,long CountMessage, Integer key){
+        if(Objects.equals(role,UserRole.admin)|| Objects.equals(role,UserRole.user)){
+            ms.addMessage(message, CountMessage, key);
     }
 
     }
+}
+
+
 

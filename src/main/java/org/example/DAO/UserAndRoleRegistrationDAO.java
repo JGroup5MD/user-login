@@ -1,6 +1,6 @@
 package org.example.DAO;
 
-import org.example.DAO.API.IUserDAO;
+import org.example.DAO.API.IUserAndRoleRegistrationDAO;
 import org.example.DTO.UserAndRoleRegistration;
 import org.example.DTO.UserDTO;
 import org.example.DTO.UserRole;
@@ -9,12 +9,13 @@ import java.time.LocalDate;
 import java.util.*;
 
 
-public class UserDAO implements IUserDAO {
+public class UserAndRoleRegistrationDAO implements IUserAndRoleRegistrationDAO {
     private final UserDTO udto;
 
-    public UserDAO(UserDTO udto) {
+    public UserAndRoleRegistrationDAO(UserDTO udto) {
         this.udto = udto;
     }
+
 
     private final Map<Integer, UserAndRoleRegistration> userMap = new HashMap<>();
     @Override
@@ -65,8 +66,8 @@ public class UserDAO implements IUserDAO {
     }
 
     public  UserRole role(String loginADMIN, String passwordADMIN, UserRole role){
-        if(UserDAO.this.createdADMIN().getLogin().equals(loginADMIN)
-        && UserDAO.this.createdADMIN().getPassword().equals(passwordADMIN)){
+        if(UserAndRoleRegistrationDAO.this.createdADMIN().getLogin().equals(loginADMIN)
+        && UserAndRoleRegistrationDAO.this.createdADMIN().getPassword().equals(passwordADMIN)){
             role=UserRole.admin;
         }else {
             role=UserRole.user;

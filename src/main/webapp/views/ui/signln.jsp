@@ -1,4 +1,4 @@
-<%@ page import="org.example.DAO.UserDAO" %>
+<%@ page import="org.example.DAO.UserAndRoleRegistrationDAO" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>

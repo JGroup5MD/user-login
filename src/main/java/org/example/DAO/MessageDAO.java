@@ -3,49 +3,53 @@ package org.example.DAO;
 import org.example.DAO.API.IMessageDAO;
 import org.example.DTO.MessageDTO;
 
+import java.time.LocalDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class MessageDAO implements IMessageDAO {
-
-    private final List<MessageDTO> listMessage=new ArrayList<>();
-    @Override
-    public List<MessageDTO> getAtSender(String sender){
-        for (MessageDTO item: listMessage)
-        if(listMessage.contains(sender)){
-        return this.listMessage;
-        }
-            return getAtSender(null);
+    private final List <MessageDTO> list;
+    public MessageDAO(List<MessageDTO> list) {
+        this.list = list;
     }
-
+    private final Map<Integer, List<MessageDTO>> mapMessage = new HashMap<>();
 
     @Override
-    public List<MessageDTO> getAtRecipient(String recipient) {
-        for (MessageDTO item: listMessage)
-        if(listMessage.contains(recipient)){
-            return this.listMessage;
+    public void addMessage(MessageDTO message) {
+        long countMessage=0;
+
+        String sender=message.getSender();
+        String recipient= message.getRecipient();
+        String messages= message.getMessage();
+        LocalDateTime timeSending=LocalDateTime.now();
+
+        list.add(new MessageDTO(sender, recipient, messages, timeSending));
+
+        for (Integer key : mapMessage.keySet()) {
+            this.mapMessage.put(key, list);
+           countMessage++;
         }
-            return getAtRecipient(null);
     }
+
 
 
     @Override
     public  List<MessageDTO> getAllmassege(){
-        Iterator <MessageDTO> iter=listMessage.iterator();
+        Iterator <MessageDTO> iter=list.iterator();
         if(!iter.hasNext()) {
             throw  new IllegalArgumentException("на данный момент нет ни одного сообщения");
         } else {
             iter.next();
-            return this.listMessage;
+            return this.list;
     }
     }
 
-    @Override
-    public <MessageDTO> void addToList(List<MessageDTO> listMessage, Stream<MessageDTO> source) {
-        source.collect(Collectors.toCollection(() -> listMessage));
     }
-}
+
+
+
+
 
 
 

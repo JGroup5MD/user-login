@@ -15,7 +15,7 @@ public class MassageServiceSingleton {
         if (instance == null) {
             synchronized (MassageServiceSingleton.class) {
                 if (instance == null) {
-                    instance = new MessageService(getInstance()) {
+                    instance = new MessageService() {
                     };
                 }
             }

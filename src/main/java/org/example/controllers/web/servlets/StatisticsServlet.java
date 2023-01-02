@@ -1,15 +1,9 @@
 package org.example.controllers.web.servlets;
 
-import org.example.DAO.API.IMessageDAO;
-import org.example.DAO.API.IUserDAO;
-import org.example.DAO.MessageDAO;
-import org.example.DAO.UserDAO;
-import org.example.DTO.ActivUserSession;
+import org.example.service.LoginService;
+import org.example.service.MessageService;
 
-import org.example.DTO.MessageDTO;
-import org.example.service.CredentialsService;
-import org.example.service.StatisticsService;
-import org.example.service.fabrics.StatisticServiceSingleton;
+import org.example.service.UserService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,17 +12,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 
 @WebServlet (name="StatisticsServlet", urlPatterns = "/statistic")
 public class StatisticsServlet extends HttpServlet {
 
-    private final StatisticsService ss;
-    private final CredentialsService cs;
-    public StatisticsServlet(StatisticsService ss, CredentialsService cs) {
-        this.ss = ss;
-        this.cs = cs;
+    private final MessageService ms;
+    private final UserService us;
+    private final LoginService ls;
+
+    public StatisticsServlet(MessageService ms, UserService us, LoginService ls) {
+        this.ms = ms;
+        this.us = us;
+        this.ls = ls;
     }
+
     String message;
     int alluser;
     int activeUser;

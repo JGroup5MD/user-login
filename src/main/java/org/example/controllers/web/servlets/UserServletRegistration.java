@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.time.LocalDate;
 
 import static javax.swing.UIManager.get;
 
@@ -41,8 +42,8 @@ public class UserServletRegistration extends HttpServlet {
         String FirstName=req.getParameter("Fname");
         String MidlName=req.getParameter("Mname");
         String LastName=req.getParameter("Lname");
-        String birthDate=req.getParameter("birthDate");
-        String regDate=req.getParameter("regDate");
+        LocalDate birthDate=req.getParameter("birthDate");
+        LocalDate regDate=req.getParameter("regDate");
 
 
 
@@ -51,7 +52,7 @@ public class UserServletRegistration extends HttpServlet {
 
         String loginUser=(String)session.getAttribute(login);
         String nameUser=(String)session.getAttribute(FirstName+" "+MidlName+" "+LastName);
-        DatesDTO regDateUser=(DatesDTO)session.getAttribute(regDate);
+        LocalDate regDateUser=(LocalDate)session.getAttribute(regDate);
         PrintWriter out = resp.getWriter();
 
         if((boolean)session.getAttribute(null) ){

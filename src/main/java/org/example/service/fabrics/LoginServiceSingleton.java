@@ -8,12 +8,11 @@ public class LoginServiceSingleton {
 
     private LoginServiceSingleton() {
     }
-
-    public static ILoginService getInstance() {
+    public static LoginServiceSingleton getInstance() {
         if (instance == null) {
-            synchronized (LoginService.class) {
+            synchronized (LoginServiceSingleton.class) {
                 if (instance == null) {
-                    instance = new LoginService(UserAndRoleAndDateRegistrationSingleton.getInstance);
+                    instance = new LoginServiceSingleton();
                 }
             }
         }

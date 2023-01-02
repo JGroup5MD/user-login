@@ -3,6 +3,7 @@ package org.example.service;
 import org.example.DTO.LoginDTO;
 
 import org.example.service.API.ILoginService;
+import org.example.service.API.IUserService;
 
 import java.util.*;
 
@@ -13,6 +14,7 @@ public class LoginService implements ILoginService {
     public LoginService(List<LoginDTO> credentialsDTOS) {
         this.credentialsDTOS = credentialsDTOS;
     }
+
 
     public boolean markerLogin(String param){
         for (LoginDTO item:credentialsDTOS)
