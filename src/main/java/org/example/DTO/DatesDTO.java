@@ -6,7 +6,7 @@ public class DatesDTO {
 
     public static String  DATES(String dates){
     SimpleDateFormat formater = new SimpleDateFormat("yyyy.MM.dd");
-    Date date = new Date(1212121212121L);
+    Date date = new Date("****.**.**");
     return formater.format(date);
     }
 

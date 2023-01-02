@@ -6,6 +6,7 @@ import org.example.DTO.UserDTO;
 import org.example.DTO.ActivUserSession;
 import org.example.DTO.UserRole;
 
+import java.time.LocalDate;
 import java.util.*;
 
 
@@ -15,7 +16,7 @@ public class UserDAO implements IUserDAO {
 
     public UserDAO() {
         final UserDTO.UserBuilder ADMIN=new UserDTO.UserBuilder();
-        add("admin", "1111admin1111", "admin", "admin", "admin",null, UserRole.admin);
+        add("admin", "1111admin1111", "admin", "admin", "admin", 111, UserRole.admin);
         userMap.put(1, ADMIN);
     }
 
@@ -42,6 +43,10 @@ public class UserDAO implements IUserDAO {
              }
          }
          return BaseUser;
+    }
+    @Override
+    public List<UserDTO> getAllUser(List<UserDTO> allUser){
+        return allUser;
     }
 
     @Override

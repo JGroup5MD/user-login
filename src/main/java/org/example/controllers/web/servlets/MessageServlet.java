@@ -45,7 +45,7 @@ public class MessageServlet  extends HttpServlet {
         if(message==null){
             throw new IllegalArgumentException("parametr message not entered");
         }
-        MessageDTO messageDTO=new MessageDTO()
+
 
         RequestDispatcher requestDispatcher=req.getRequestDispatcher("message.jsp");
         requestDispatcher.forward(req,resp);

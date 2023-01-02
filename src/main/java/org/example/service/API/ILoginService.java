@@ -1,11 +1,11 @@
 package org.example.service.API;
 
-import org.example.DTO.UserDTO;
-
-import java.util.List;
+import org.example.DTO.LoginDTO;
 
 public interface ILoginService {
-    public void NotLogin(String login);
-    public void NotPassword(String password);
-    public List<UserDTO> NotUserToRegistration(String loginUser, String passwordUser);
+    public boolean markerLogin(String param);
+    public boolean markerPassword(String param);
+    public void addActiveUser(LoginDTO activeUser, String login, String password, long activeUsers);
+    public LoginDTO getActiveUsers();
+
 }

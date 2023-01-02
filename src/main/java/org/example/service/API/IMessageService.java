@@ -6,7 +6,7 @@ import org.example.DTO.MessageDTO;
 import java.util.List;
 
 public interface IMessageService {
-    public boolean addMessage(MessageDTO message);
-    public List<MessageDTO> getAllMessage(List<MessageDAO> message);
-    public boolean getMessage(List<MessageDTO> message,String recipient);
+    public List<MessageDTO> addMessage(MessageDTO message);
+    public List<MessageDTO> getAllMessage(String roleUser);
+    public boolean getMessageAtRecipient(String recipient);
 }

@@ -2,11 +2,11 @@ package org.example.DTO;
 
 import java.util.Objects;
 
-public class CredentialsDTO {
+public class LoginDTO {
     private UserDTO login;
     private UserDTO password;
 
-    public CredentialsDTO(UserDTO login, UserDTO password) {
+    public LoginDTO(UserDTO login, UserDTO password) {
         this.login = login;
         this.password = password;
     }
@@ -31,7 +31,7 @@ public class CredentialsDTO {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        CredentialsDTO that = (CredentialsDTO) o;
+        LoginDTO that = (LoginDTO) o;
         return Objects.equals(login, that.login) && Objects.equals(password, that.password);
     }
 

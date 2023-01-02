@@ -2,39 +2,46 @@ package org.example.service;
 
 import org.example.DAO.MessageDAO;
 import org.example.DTO.MessageDTO;
+import org.example.DTO.UserRole;
 import org.example.service.API.IMessageService;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class MessageService implements IMessageService {
-    private  MessageDAO dao;
-    private  MessageDTO dto;
-    List <MessageDTO> list=new ArrayList<>();
-
-    public MessageService(IMessageService service) {
-
-    }
+    private  UserRole roleUser;
+    List <MessageDTO> list=null;
+    long countMessages=0;
 
     @Override
-    public boolean addMessage(MessageDTO message) {
-        String sender=dto.getSender();
-        String recipient= dto.getRecipient();
-        String messages= dto.getMessage();
+    public List<MessageDTO> addMessage(MessageDTO message) {
+
+        String sender=message.getSender();
+        String recipient= message.getRecipient();
+        String messages= message.getMessage();
         LocalDateTime timeSending=LocalDateTime.now();
-        return list.add(new MessageDTO(sender,recipient,messages,timeSending));
+        list.add(new MessageDTO(sender, recipient, messages, timeSending));
+        countMessages++;
+        return list;
     }
     @Override
-    public List<MessageDTO> getAllMessage(List<MessageDAO> message){
-        return dao.getAllmassege();
+    public List<MessageDTO> getAllMessage(String roleUser){
+        if(Objects.equals(UserRole.admin, roleUser)){
+            return this.list;
+    }
+        return null;
     }
     @Override
-    public boolean getMessage(List<MessageDTO> message,String recipient){
-        if(list.contains(recipient)){
-            return message.contains(recipient);
+    public boolean getMessageAtRecipient(String recipient) {
+        if (recipient!=null){
+            return  list.contains(recipient);
         }
         return false;
     }
 }
+
+
+
+
 
