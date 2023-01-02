@@ -1,5 +1,6 @@
 package org.example.service.fabrics;
 
+import org.example.service.API.ILoginService;
 import org.example.service.LoginService;
 
 public class LoginServiceSingleton {
@@ -8,11 +9,11 @@ public class LoginServiceSingleton {
     private LoginServiceSingleton() {
     }
 
-    public static LoginServiceSingleton getInstance() {
+    public static ILoginService getInstance() {
         if (instance == null) {
             synchronized (LoginService.class) {
                 if (instance == null) {
-                    instance = new LoginServiceSingleton();
+                    instance = new LoginService(UserAndRoleAndDateRegistrationSingleton.getInstance);
                 }
             }
         }

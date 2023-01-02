@@ -1,8 +1,6 @@
 package org.example.controllers.web.servlets;
 
 
-import org.example.DAO.UserDAO;
-import org.example.DTO.DatesDTO;
 import org.example.service.API.IUserService;
 import org.example.service.fabrics.UserServiceSingleton;
 

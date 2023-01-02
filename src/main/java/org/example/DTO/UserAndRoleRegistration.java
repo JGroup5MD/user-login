@@ -3,12 +3,12 @@ package org.example.DTO;
 import java.time.LocalDate;
 import java.util.Objects;
 
-public class UserAndRoleAndDateRegistration {
+public class UserAndRoleRegistration {
     private UserDTO userDTO;
     private UserRole role;
     private LocalDate timeRegistration;
 
-    public UserAndRoleAndDateRegistration(UserDTO userDTO, UserRole role, LocalDate timeRegistration) {
+    public UserAndRoleRegistration(UserDTO userDTO, UserRole role, LocalDate timeRegistration) {
         this.userDTO = userDTO;
         this.role = role;
         this.timeRegistration =LocalDate.now();
@@ -42,7 +42,7 @@ public class UserAndRoleAndDateRegistration {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        UserAndRoleAndDateRegistration that = (UserAndRoleAndDateRegistration) o;
+        UserAndRoleRegistration that = (UserAndRoleRegistration) o;
         return Objects.equals(userDTO, that.userDTO) && role == that.role && Objects.equals(timeRegistration, that.timeRegistration);
     }
 

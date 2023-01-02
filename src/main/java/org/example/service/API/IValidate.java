@@ -6,6 +6,8 @@ public interface IValidate {
     public void validateMessage();
     public String informValidLogin(String login);
     public String informValidPassword(String password);
+    public void validateUserAndRole();
+
 
 
 

@@ -1,7 +1,7 @@
 package org.example.service;
 
 import org.example.DTO.MessageDTO;
-import org.example.DTO.UserAndRoleAndDateRegistration;
+import org.example.DTO.UserAndRoleRegistration;
 import org.example.DTO.UserDTO;
 import org.example.service.API.ILoginService;
 import org.example.service.API.IValidate;
@@ -12,14 +12,15 @@ public class Validate implements IValidate {
     private final MessageDTO message;
     private final ILoginService is;
     private  final UserDTO user;
-    private final UserAndRoleAndDateRegistration userRegistration;
+    private final UserAndRoleRegistration userRegistration;
 
-    public Validate(MessageDTO message,ILoginService is, UserDTO user, UserAndRoleAndDateRegistration userRegistration) {
+    public Validate(MessageDTO message,ILoginService is, UserDTO user, UserAndRoleRegistration userRegistration) {
         this.message=message;
         this.is = is;
         this.user = user;
         this.userRegistration=userRegistration;
     }
+    @Override
     public void validateUSER(){
         if(user.getLogin()==null||user.getLogin().isEmpty()){
             throw new IllegalArgumentException("вы не ввели login");
@@ -58,9 +59,14 @@ public class Validate implements IValidate {
         }
         if (user.getBirthDate()==null ){
         throw new IllegalArgumentException("вы не ввели birth date");
+        }
+        if(user.getFirstName().matches("(?=.*[a-z])(?=.*[A-Z])(?=.*[а-я])(?=.*[А-Я])")
+                || user.getMidlName().matches("(?=.*[a-z])(?=.*[A-Z])(?=.*[а-я])(?=.*[А-Я])")
+                || user.getLastName().matches("(?=.*[a-z])(?=.*[A-Z])(?=.*[а-я])(?=.*[А-Я])")){
+            throw new IllegalArgumentException("Каждый параметр имени может состоять только из букв");
+        }
     }
-    }
-
+    @Override
     public void validateMessage() {
         if(message.getMessage()==null ||message.getMessage().length()<15){
             throw new IllegalArgumentException("Вы пытаетесь отправить пустое сообщение, сообщение не может быть короче 15 символов");
@@ -69,14 +75,15 @@ public class Validate implements IValidate {
             throw  new IllegalArgumentException("вы не указали кто будет получателем сообщения");
         }
     }
-
+    @Override
     public String informValidLogin(String login){
         return is.markerLogin(login)? "login is correct" : "Error 404, incorrect login" ;
     }
+    @Override
     public String informValidPassword(String password) {
         return is.markerPassword(password) ? "password is correct" : "Error 404, incorrect password";
     }
-
+    @Override
     public void validateUserAndRole(){
         if(userRegistration.getTimeRegistration()==null
                 ||userRegistration.getUserDTO()==null

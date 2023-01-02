@@ -1,9 +1,8 @@
 package org.example.DAO;
 
 import org.example.DAO.API.IUserDAO;
-import org.example.DTO.DatesDTO;
+import org.example.DTO.UserAndRoleRegistration;
 import org.example.DTO.UserDTO;
-import org.example.DTO.ActivUserSession;
 import org.example.DTO.UserRole;
 
 import java.time.LocalDate;
@@ -11,79 +10,69 @@ import java.util.*;
 
 
 public class UserDAO implements IUserDAO {
+    private final UserDTO udto;
 
-    private final Map<Integer, UserDTO.UserBuilder> userMap = new HashMap<>();
-
-    public UserDAO() {
-        final UserDTO.UserBuilder ADMIN=new UserDTO.UserBuilder();
-        add("admin", "1111admin1111", "admin", "admin", "admin", 111, UserRole.admin);
-        userMap.put(1, ADMIN);
+    public UserDAO(UserDTO udto) {
+        this.udto = udto;
     }
 
+    private final Map<Integer, UserAndRoleRegistration> userMap = new HashMap<>();
     @Override
-    public  List<UserDTO> add(String login,
-                    String password,
-                    String FirstName,
-                    String MidlName,
-                    String LastName,
-                    DatesDTO birthDate,
-                    UserRole role) {
-
-         List<UserDTO> BaseUser=new ArrayList<>();
-
-         for(UserDTO item: BaseUser){
-             if(!login.equals(BaseUser.contains(login))&&
-                !password.equals(BaseUser.contains(password)) &&
-                !FirstName.equals(BaseUser.contains(FirstName))&&
-                !MidlName.equals(BaseUser.contains(MidlName))&&
-                !LastName.equals(BaseUser.contains(LastName))&&
-                !birthDate.equals(BaseUser.contains(birthDate))&&
-                !role.equals(BaseUser.contains(role))){
-                 BaseUser.add(item);
-             }
-         }
-         return BaseUser;
+    public UserDTO createdADMIN() {
+        final UserDTO ADMIN = new UserDTO("admin", "1111admin1111",
+                "admin", "admin", "admin",
+                LocalDate.of(2022, 12, 28));
+        final UserAndRoleRegistration registrationAdmin = new UserAndRoleRegistration(ADMIN, UserRole.admin, LocalDate.now());
+        this.userMap.put(1, registrationAdmin);
+        return ADMIN;
     }
     @Override
-    public List<UserDTO> getAllUser(List<UserDTO> allUser){
-        return allUser;
+    public void addUsers() {
+        String login=udto.getLogin();
+        String password= udto.getPassword();
+        String FirstName= udto.getFirstName();
+        String MidlName=udto.getMidlName();
+        String LastName= udto.getLastName();
+        LocalDate birthDate=udto.getBirthDate();
+        UserAndRoleRegistration registrationUser=new UserAndRoleRegistration((new UserDTO(login,password,FirstName,MidlName,LastName,birthDate)),UserRole.user,LocalDate.now());
+        for (Integer key : userMap.keySet()) {
+            this.userMap.put(key, registrationUser);
     }
-
+}
     @Override
-    public  Map<Integer, UserDTO.UserBuilder> deliteUserFromMap(int key) {
-        Map<Integer, UserDTO.UserBuilder> mapAutoDelete=new HashMap<>();
-        mapAutoDelete.entrySet().removeIf(e->e.getKey()==key);
-        return mapAutoDelete;
-    }
-
-    @Override
-    public Map<Integer, UserDTO.UserBuilder> getMapOfUser(Map<Integer, UserDTO.UserBuilder> userMap) {
+    public Map<Integer, UserAndRoleRegistration> getAllUsers(){
         return this.userMap;
     }
-
-
     @Override
-    public void deleteUser(int id, String login) {
-        Object desiredObject=new Object();
-        Iterable<? extends Map.Entry<Integer, UserDTO.UserBuilder>> entrySet = null;
-        for (Map.Entry<Integer,UserDTO.UserBuilder> pair : entrySet) {
-            if (desiredObject.equals(pair.getValue())) {
-                userMap.remove(id, login);
-            }
+    public  void deliteAnyUser(int key) {
+        userMap.remove(key);
+    }
+    @Override
+    public UserAndRoleRegistration deleteUser(String login, UserAndRoleRegistration user) {
+        String FirstName=user.getUserDTO().getFirstName();
+        String MidlName=user.getUserDTO().getMidlName();
+        String LastName=user.getUserDTO().getLastName();
+        String fullName=FirstName+" "+MidlName+" "+LastName;
+        if(login!=null&&user.getUserDTO().getLogin()!=null) {
+            userMap.values().removeIf(a -> a.getUserDTO().getLogin().equals(login));
         }
-     }
+        for(Map.Entry<Integer,UserAndRoleRegistration> item:userMap.entrySet()){
+            if(fullName.equals((item.getValue().getUserDTO().getFirstName())+" "+
+                    (item.getValue().getUserDTO().getMidlName())+" "+(item.getValue().getUserDTO().getLastName()))){
+                return userMap.remove(item.getKey());
+            }
+        }return null;
+    }
 
-    public  UserRole Role(UserRole role){
-        if(!userMap.containsKey(1)||userMap.containsValue("1111admin1111")){
-            role=UserRole.user;
-        }else {
+    public  UserRole role(String loginADMIN, String passwordADMIN, UserRole role){
+        if(UserDAO.this.createdADMIN().getLogin().equals(loginADMIN)
+        && UserDAO.this.createdADMIN().getPassword().equals(passwordADMIN)){
             role=UserRole.admin;
+        }else {
+            role=UserRole.user;
         }
         return role;
     }
-    public ActivUserSession initSessionUser(ActivUserSession userSession){
-        return new ActivUserSession(userSession.getLogin(), userSession.getPassword(),
-               UserRole.user,userSession.getTimeStartSession());
-    }
+
    }
 

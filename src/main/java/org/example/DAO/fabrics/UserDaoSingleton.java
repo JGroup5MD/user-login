@@ -2,6 +2,7 @@ package org.example.DAO.fabrics;
 
 import org.example.DAO.API.IUserDAO;
 import org.example.DAO.UserDAO;
+import org.example.DTO.UserAndRoleRegistration;
 
 public class UserDaoSingleton {
     private volatile static UserDAO instance;
@@ -11,7 +12,7 @@ public class UserDaoSingleton {
         if(instance == null){
             synchronized (UserDaoSingleton.class){
                 if(instance == null){
-                    instance = new UserDAO();
+                    instance = new UserAndRoleRegistration();
                 }
             }
         }
