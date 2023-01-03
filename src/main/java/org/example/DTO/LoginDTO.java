@@ -3,28 +3,28 @@ package org.example.DTO;
 import java.util.Objects;
 
 public class LoginDTO {
-    private UserDTO login;
-    private UserDTO password;
+    private UserDTO loginIn;
+    private UserDTO passwordIn;
 
-    public LoginDTO(UserDTO login, UserDTO password) {
-        this.login = login;
-        this.password = password;
+    public LoginDTO(UserDTO loginIn, UserDTO passwordIn) {
+        this.loginIn = loginIn;
+        this.passwordIn = passwordIn;
     }
 
     public UserDTO getLogin() {
-        return login;
+        return loginIn;
     }
 
-    public void setLogin(UserDTO login) {
-        this.login = login;
+    public void setLogin(UserDTO loginIn) {
+        this.loginIn = loginIn;
     }
 
     public UserDTO getPassword() {
-        return password;
+        return passwordIn;
     }
 
-    public void setPassword(UserDTO password) {
-        this.password = password;
+    public void setPassword(UserDTO passwordIn) {
+        this.passwordIn = passwordIn;
     }
 
     @Override
@@ -32,19 +32,19 @@ public class LoginDTO {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         LoginDTO that = (LoginDTO) o;
-        return Objects.equals(login, that.login) && Objects.equals(password, that.password);
+        return Objects.equals(loginIn, that.loginIn) && Objects.equals(passwordIn, that.passwordIn);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(login, password);
+        return Objects.hash(loginIn, passwordIn);
     }
 
     @Override
     public String toString() {
-        return "CredentialsDTO{" +
-                "login=" + login +
-                ", password=" + password +
+        return "LoginDTO{" +
+                "loginIn=" + loginIn +
+                ", passwordIn=" + passwordIn +
                 '}';
     }
 }

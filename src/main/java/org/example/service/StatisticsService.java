@@ -70,7 +70,7 @@ public class StatisticsService implements IStatisticService {
         if(Objects.equals(role,UserRole.admin)){
         ms.getAtRecipient(recipient);
         }
-        
+
     }
 }
 

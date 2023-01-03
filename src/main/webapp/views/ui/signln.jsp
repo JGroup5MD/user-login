@@ -14,22 +14,21 @@
             border-color: green;
         }
     </style>
-    <title>Registration new user</title>
+    <title>Авторизация</title>
 
 </head>
-<body >
-<p> Login: ${paramValues.login}</p>
-<br><br>
-<p> Password: ${paramValues.password}</p>
-<br><br>
-<p> FirstName: ${paramValues.firstName}</p>
-<br><br>
-<p> MidlName: ${paramValues.midlName}</p>
-<br><br>
-<p> LastName: ${paramValues.lastName}</p>
-<br><br>
-<p> BirthDate: ${paramValues.birthDate}</p>
-<br><br>
+<body>
+<form method="POST" action="${pageContext.request.contextPath}/api/user">
+    <label>
+        <input type="text" name="loginIn" placeholder="Логин"/>
+    </label> <br><br>
+    <label>
+        <input type="text" name="passwordIn" placeholder="gароль"/>
+    </label> <br><br>
 
+    <button type="submit" class="border-button">войти</button>
+</form>
 </body>
 </html>
+
+
