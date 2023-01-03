@@ -65,7 +65,7 @@ public class RegistrationServlet extends HttpServlet {
         this.service.save(builder.build());
 
         PrintWriter writer = resp.getWriter();
-        writer.write("Hello " + name);
+        writer.write("Welcome " + service.get());
 
 
     }

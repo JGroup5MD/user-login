@@ -1,19 +1,10 @@
 package web.model;
 
-import web.dao.api.IUserDao;
-import web.dto.LoginDto;
-import web.service.LoginService;
-import web.service.api.ILoginService;
-import web.service.fabrics.LoginServiceSingleton;
-
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 public class SessionKitchen extends HttpServlet {
-
-    private static ILoginService service;
-
 
     public static String getSessionValue(HttpServletRequest req, String LOGIN_PARAM_NAME) {
 

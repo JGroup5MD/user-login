@@ -150,7 +150,7 @@ public class NewUserDto {
         }
 
         public UserBuilder setPassword(String password) {
-            this.password = PassEncBase.generateSecurePassword(password, salt);
+            this.password = password;
             return this;
         }
 

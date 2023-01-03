@@ -1,9 +1,11 @@
 package web.service;
+import web.dao.UserDao;
 import web.dao.api.IUserDao;
 import web.dto.LoginDto;
 import web.dto.UserDto;
 import web.service.api.ILoginService;
 import web.service.api.IRegistrationService;
+import web.service.fabrics.RegistrationServiceSingleton;
 
 import java.util.List;
 
@@ -13,7 +15,7 @@ public class LoginService implements ILoginService {
     private IUserDao dao;
     private boolean authorized;
 
-    IRegistrationService regService;
+    private IRegistrationService regService;
 
     public LoginService(IUserDao dao) {
         this.dao = dao;
@@ -21,8 +23,9 @@ public class LoginService implements ILoginService {
 
     @Override
     public List<UserDto> get() {
-        return this.dao.get();
+        return this.regService.get();
     }
+
 
     @Override
     public boolean exist(String login) {

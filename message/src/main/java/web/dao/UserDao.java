@@ -25,7 +25,7 @@ public class UserDao implements IUserDao {
         this.registeredUsers.add(user);
     }
 
-
+    @Override
     public List<UserDto> get() {
         return this.registeredUsers;
 
@@ -52,33 +52,6 @@ public class UserDao implements IUserDao {
                 '}';
     }
 
-/*    public static void main(String[] args) {
-        NewUserDto user = new NewUserDto("M",
-                "A", "Z", "199", "masha", "123qwe");
 
-        NewUserDto.UserBuilder builder =
-                NewUserDto.UserBuilder.create()
-                        .setName("M")
-                        .setMiddleName("A")
-                        .setLastName("Z")
-                        .setDateOfBirth("1999/02/02")
-                        .setLogin("login")
-                        .setPassword("123qwe");
-
-        builder.build();
-
-        UserDto userReg = new UserDto(builder.build());
-  //      System.out.println(userReg);
-
-       UserDao userBase = new UserDao();
-        userBase.save(userReg);
-
-        userBase.get();
-        System.out.println(userBase);
-   //     System.out.println(userBase.get().get(1));
-
-   //     System.out.println(userBase.getPassword());
-
-    }*/
 
 }

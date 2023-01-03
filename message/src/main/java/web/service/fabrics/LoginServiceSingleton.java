@@ -1,6 +1,6 @@
 package web.service.fabrics;
 
-import web.dao.fabrics.UserDaoLoginSingleton;
+import web.dao.fabrics.UserDaoSingleton;
 import web.service.LoginService;
 import web.service.api.ILoginService;
 
@@ -15,7 +15,7 @@ public class LoginServiceSingleton {
         if(instance == null){
             synchronized (LoginServiceSingleton.class){
                 if(instance == null){
-                    instance = new LoginService(UserDaoLoginSingleton.getInstance());
+                    instance = new LoginService(UserDaoSingleton.getInstance());
                 }
             }
 
