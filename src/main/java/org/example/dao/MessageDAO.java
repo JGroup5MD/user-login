@@ -18,9 +18,9 @@ public class MessageDAO implements IMessageDAO{
     }
 
 
-    //public get(int messageID, int userID) {
-
-    //}
+    public Integer getTotalCount() {
+        return messages.size();
+    }
 
     public ArrayList<MessageDTO> getAllMessages(String userID) {
         ArrayList<MessageDTO> userMessages = new ArrayList<>();
