@@ -2,11 +2,8 @@ package web.controllers;
 
 
 import web.dto.LoginDto;
-import web.service.RegistrationService;
 import web.service.api.ILoginService;
-import web.service.api.IRegistrationService;
 import web.service.fabrics.LoginServiceSingleton;
-import web.service.fabrics.RegistrationServiceSingleton;
 
 
 import javax.servlet.ServletException;
@@ -19,12 +16,6 @@ import java.io.PrintWriter;
 import static web.model.SessionKitchen.getSessionValue;
 import static web.model.SessionKitchen.saveSession;
 
-/*
-*Написать сервлет /api/login на который будут отправляться данные для входа используя POST запрос:
-*Логин
-*Пароль
-*Если не нашли пользователя или не подошел пароль, выдать ошибку.
-* */
 
 @WebServlet(name = "LoginServlet", urlPatterns = "/api/login")
 public class LoginServlet extends HttpServlet {

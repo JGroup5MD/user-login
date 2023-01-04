@@ -9,10 +9,6 @@ import web.dto.UserDto;
 import java.time.LocalDateTime;
 import java.util.*;
 
-/*
-* 3. При регистрации у пользователя роль Пользователь, зарегистрировать пользователя, значит сохранить данные о нем в приложении
-*
-* */
 
 
 public class UserDao implements IUserDao {

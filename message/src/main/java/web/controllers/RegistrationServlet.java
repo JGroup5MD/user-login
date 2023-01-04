@@ -11,9 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-
-
 @WebServlet(name = "RegistrationServlet", urlPatterns = "/api/user")
+
 public class RegistrationServlet extends HttpServlet {
 
     private final String LOGIN_PARAM_NAME = "login";

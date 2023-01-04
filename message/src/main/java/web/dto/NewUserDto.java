@@ -4,15 +4,7 @@ import web.service.PassEncBase;
 
 import java.util.Date;
 
-/*
-* 1. Сущность Пользователь имеет следующие поля
-Логин
-Пароль
-ФИО
-Дата рождения
-Дата регистрации
-Роль (Пользователь\Админ)
-* */
+
 public class NewUserDto {
     private String name;
     private String middleName;
