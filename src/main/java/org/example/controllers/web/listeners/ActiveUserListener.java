@@ -5,7 +5,6 @@ import org.example.DTO.UserAndRoleRegistration;
 import org.example.DTO.UserRole;
 import org.example.service.API.IStatisticService;
 import org.example.service.LoginService;
-import org.example.service.UserService;
 
 import javax.servlet.ServletContext;
 import javax.servlet.annotation.WebListener;

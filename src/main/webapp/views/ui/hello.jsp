@@ -3,6 +3,7 @@
 <head>
     <style>
         {
+            background-size: 50% 50%;
             width: 100%;
             font-size: 14px;
             text-align: center;
@@ -13,14 +14,15 @@
             border-color: green;
         }
     </style>
-    <title>Main</title>
+    <title>Main page</title>
 
 </head>
 <body>
-<h1>Hello!!!</h1>
-<br/><br/>
-<h3>Please, registration</h3>
-<%@include file="ui/signln.jsp" %>
+<div
+>
+<h1>Welcome</h1>
+<h3>Get started registration <a href="${pageContext.request.contextPath}ui/signUp">Sign up</a></h3>
+</div>>
 </body>
 </html>
 

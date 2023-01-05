@@ -1,12 +1,8 @@
 package org.example.service;
 
 import org.example.DTO.*;
-import org.example.service.API.ILoginService;
-import org.example.service.API.IMessageService;
-import org.example.service.API.IStatisticService;
-import org.example.service.API.IUserService;
+import org.example.service.API.*;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -16,63 +12,103 @@ public class StatisticsService implements IStatisticService {
 
     private final IMessageService ms;
     private final ILoginService ls;
-    private final IUserService us;
+    private final IUserAndRoleRegistrationService iurs;
     private  final UserRole role;
 
-    public StatisticsService(IMessageService ms, ILoginService ls, IUserService us, UserRole role) {
+    public StatisticsService(IMessageService ms, ILoginService ls, IUserAndRoleRegistrationService iurs,UserRole role) {
         this.ms = ms;
         this.ls = ls;
-        this.us = us;
+        this.iurs=iurs;
         this.role = role;
     }
-    @Override
-    public LoginDTO getActiveUsers(UserRole role){
+    public void getAllUsers(Map<Integer, UserAndRoleRegistration> map){
+        this.iurs.getAllUsers(map);
+    }
+    public UserAndRoleRegistration deleteUser(String login, UserAndRoleRegistration user){
+        return this.iurs.deleteUser(login,user);
+    }
+
+    public void getActiveUsers(UserRole role, List<LoginDTO> userLogin){
         if(Objects.equals(role,UserRole.admin)){
-        return  ls.getActiveUsers();
+            this.ls.getActiveUsers(userLogin);
     }
-        return  null;
     }
-    @Override
-    public  Map<Integer, List<MessageDTO>> getAllMessage(List<String> message){
-        Map<Integer, List<MessageDTO>> mapMessage =new HashMap<>();
+
+    public UserAndRoleRegistration deliteActiveUsers(UserAndRoleRegistration user, String login,List<LoginDTO> userLogin){
         if(Objects.equals(role,UserRole.admin)){
-            return ms.getAllMessage(mapMessage);
-    }
+            return this.ls.deliteActiveUsers(user,login,userLogin);
+        }
         return null;
     }
-    @Override
-    public void gettAllUsers(UserRole role){
-        if(Objects.equals(role,UserRole.admin)){
-        us.AllUsers();
+    public List <MessageDTO> addMessage(MessageDTO message, List<MessageDTO> list){
+        if(Objects.equals(role,UserRole.admin)||Objects.equals(role,UserRole.user)){
+            return this.ms.addMessage(message,list);
         }
-    }
-    @Override
-    public void addMessage(List<MessageDTO> message,long CountMessage, Integer key){
-        if(Objects.equals(role,UserRole.admin)|| Objects.equals(role,UserRole.user)){
-            ms.addMessage(message, CountMessage, key);
-        }
-    }
-    @Override
-    public void deliteMessage(MessageDTO message, Integer key, String sender, String recipient){
-        if(Objects.equals(role,UserRole.admin)){
-        ms.deliteMessage(message,key,sender,recipient);
-        }
+        return null;
     }
 
-    @Override
-    public void  getMessageAtSender(String sender){
-        if(Objects.equals(role,UserRole.admin)) {
-            ms.getAtSender(sender);
-        }
+    public  List <MessageDTO>   getAllmassege(List<MessageDTO> list){
+       if(Objects.equals(role,UserRole.admin)){
+           return this.ms.getAllmassege(list);
     }
-    @Override
-    public void  getMessageTaRecipient(String recipient){
-        if(Objects.equals(role,UserRole.admin)){
-        ms.getAtRecipient(recipient);
-        }
+       return null;
+    }
 
+    public  List<MessageDTO> getMessageForUser(MessageDTO message,String sender,List <MessageDTO> list){
+        if(Objects.equals(role,UserRole.admin)||Objects.equals(role,UserRole.user)){
+            return this.ms.getMessageForUser(message,sender,list);
+        }
+        return null;
+    }
+
+    public long countMassage(List<MessageDTO> list, long count){
+        if(Objects.equals(role,UserRole.admin)){
+            return this.ms.countMassage(list,count);
+    }
+        return count;
+    }
+
+    public void gettAllUsers(UserRole role, Map<Integer, UserAndRoleRegistration> map){
+        if(Objects.equals(role,UserRole.admin)){
+            iurs.getAllUsers(map);
+        }
     }
 }
+//    @Override
+//    public  Map<Integer, List<MessageDTO>> getAllMessage(List<String> message){
+//        Map<Integer, List<MessageDTO>> mapMessage =new HashMap<>();
+//        if(Objects.equals(role,UserRole.admin)){
+//            return ms.getAllMessage(mapMessage);
+//    }
+//        return null;
+//    }
+//    @Override
+//    public void addMessage(List<MessageDTO> message,long CountMessage, Integer key){
+//        if(Objects.equals(role,UserRole.admin)|| Objects.equals(role,UserRole.user)){
+//            ms.addMessage(message, CountMessage, key);
+//        }
+//    }
+//    @Override
+//    public void deliteMessage(MessageDTO message, Integer key, String sender, String recipient){
+//        if(Objects.equals(role,UserRole.admin)){
+//        ms.deliteMessage(message,key,sender,recipient);
+//        }
+//    }
+//
+//    @Override
+//    public void  getMessageAtSender(String sender){
+//        if(Objects.equals(role,UserRole.admin)) {
+//            ms.getAtSender(sender);
+//        }
+//    }
+//    @Override
+//    public void  getMessageTaRecipient(String recipient){
+//        if(Objects.equals(role,UserRole.admin)){
+//        ms.getAtRecipient(recipient);
+//        }
+
+
+
 
 
 

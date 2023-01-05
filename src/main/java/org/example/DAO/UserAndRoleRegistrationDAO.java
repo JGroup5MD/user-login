@@ -1,6 +1,7 @@
 package org.example.DAO;
 
 import org.example.DAO.API.IUserAndRoleRegistrationDAO;
+import org.example.DTO.MessageDTO;
 import org.example.DTO.UserAndRoleRegistration;
 import org.example.DTO.UserDTO;
 import org.example.DTO.UserRole;
@@ -10,25 +11,20 @@ import java.util.*;
 
 
 public class UserAndRoleRegistrationDAO implements IUserAndRoleRegistrationDAO {
-    private final UserDTO udto;
 
-    public UserAndRoleRegistrationDAO(UserDTO udto) {
-        this.udto = udto;
-    }
-
-
-    private final Map<Integer, UserAndRoleRegistration> userMap = new HashMap<>();
     @Override
     public UserDTO createdADMIN() {
-        final UserDTO ADMIN = new UserDTO("admin", "1111admin1111",
+        Map<Integer, UserAndRoleRegistration> userMap = new HashMap<>();
+        final UserDTO ADMIN = new UserDTO("admin", "1A11aDMin11A1",
                 "admin", "admin", "admin",
                 LocalDate.of(2022, 12, 28));
         final UserAndRoleRegistration registrationAdmin = new UserAndRoleRegistration(ADMIN, UserRole.admin, LocalDate.now());
-        this.userMap.put(1, registrationAdmin);
+        userMap.put(1, registrationAdmin);
         return ADMIN;
     }
     @Override
-    public void addUsers() {
+    public Map<Integer, UserAndRoleRegistration> addUsers(UserDTO udto) {
+        Map<Integer, UserAndRoleRegistration> userMap = new HashMap<>();
         String login=udto.getLogin();
         String password= udto.getPassword();
         String FirstName= udto.getFirstName();
@@ -37,19 +33,25 @@ public class UserAndRoleRegistrationDAO implements IUserAndRoleRegistrationDAO {
         LocalDate birthDate=udto.getBirthDate();
         UserAndRoleRegistration registrationUser=new UserAndRoleRegistration((new UserDTO(login,password,FirstName,MidlName,LastName,birthDate)),UserRole.user,LocalDate.now());
         for (Integer key : userMap.keySet()) {
-            this.userMap.put(key, registrationUser);
+            userMap.put(key, registrationUser);
     }
+        return userMap;
 }
     @Override
     public Map<Integer, UserAndRoleRegistration> getAllUsers(){
-        return this.userMap;
+        Map<Integer, UserAndRoleRegistration> userMap = new HashMap<>();
+        return userMap;
     }
     @Override
-    public  void deliteAnyUser(int key) {
+    public  Map<Integer, UserAndRoleRegistration> deliteAnyUser(int key) {
+        Map<Integer, UserAndRoleRegistration> userMap = new HashMap<>();
         userMap.remove(key);
+        return userMap;
     }
+
     @Override
     public UserAndRoleRegistration deleteUser(String login, UserAndRoleRegistration user) {
+        Map<Integer, UserAndRoleRegistration> userMap = new HashMap<>();
         String FirstName=user.getUserDTO().getFirstName();
         String MidlName=user.getUserDTO().getMidlName();
         String LastName=user.getUserDTO().getLastName();
@@ -73,6 +75,18 @@ public class UserAndRoleRegistrationDAO implements IUserAndRoleRegistrationDAO {
             role=UserRole.user;
         }
         return role;
+    }
+
+    public long countALLUser(Map<Integer, UserAndRoleRegistration> userMap, long count){
+        if (userMap.isEmpty()){
+            count=0;
+        }
+        for(Map.Entry<Integer,UserAndRoleRegistration> item:userMap.entrySet()){
+            if (item!=null){
+                count++;
+            }
+        }
+        return count;
     }
 
    }

@@ -1,27 +1,24 @@
 package org.example.service;
 
+import org.example.DTO.LoginDTO;
 import org.example.DTO.MessageDTO;
 import org.example.DTO.UserAndRoleRegistration;
 import org.example.DTO.UserDTO;
 import org.example.service.API.ILoginService;
 import org.example.service.API.IValidate;
+
+import java.util.List;
 import java.util.regex.Pattern;
 
 public class Validate implements IValidate {
 
-    private final MessageDTO message;
     private final ILoginService is;
-    private  final UserDTO user;
-    private final UserAndRoleRegistration userRegistration;
 
-    public Validate(MessageDTO message,ILoginService is, UserDTO user, UserAndRoleRegistration userRegistration) {
-        this.message=message;
+    public Validate(ILoginService is) {
         this.is = is;
-        this.user = user;
-        this.userRegistration=userRegistration;
     }
-    @Override
-    public void validateUSER(){
+
+    public void validateUSER(UserDTO user){
         if(user.getLogin()==null||user.getLogin().isEmpty()){
             throw new IllegalArgumentException("вы не ввели login");
         }
@@ -66,8 +63,8 @@ public class Validate implements IValidate {
             throw new IllegalArgumentException("Каждый параметр имени может состоять только из букв");
         }
     }
-    @Override
-    public void validateMessage() {
+
+    public void validateMessage(MessageDTO message) {
         if(message.getMessage()==null ||message.getMessage().length()<15){
             throw new IllegalArgumentException("Вы пытаетесь отправить пустое сообщение, сообщение не может быть короче 15 символов");
         }
@@ -75,16 +72,16 @@ public class Validate implements IValidate {
             throw  new IllegalArgumentException("вы не указали кто будет получателем сообщения");
         }
     }
-    @Override
-    public String informValidLogin(String login){
-        return is.markerLogin(login)? "login is correct" : "Error 404, incorrect login" ;
+
+    public String informValidLogin(String login, List<LoginDTO> userLogin){
+        return is.markerLogin(login,userLogin)? "login is correct" : "Error 404, incorrect login" ;
     }
-    @Override
-    public String informValidPassword(String password) {
-        return is.markerPassword(password) ? "password is correct" : "Error 404, incorrect password";
+
+    public String informValidPassword(String password,List<LoginDTO> userLogin) {
+        return is.markerPassword(password,userLogin) ? "password is correct" : "Error 404, incorrect password";
     }
-    @Override
-    public void validateUserAndRole(){
+
+    public void validateUserAndRole(UserAndRoleRegistration userRegistration){
         if(userRegistration.getTimeRegistration()==null
                 ||userRegistration.getUserDTO()==null
                 || userRegistration.getRole()==null){

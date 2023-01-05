@@ -5,14 +5,14 @@ import org.example.DAO.MessageDAO;
 
 public class MassageDaoSingleton {
 
-        private volatile static IMessageDAO instance = null;
+        private volatile static IMessageDAO instance;
 
     public MassageDaoSingleton() {
     }
 
     public static IMessageDAO getInstance() {
             if (instance == null) {
-                synchronized (MassageDaoSingleton.class) {
+                synchronized (IMessageDAO.class) {
                     if (instance == null) {
                         instance = new MessageDAO() {
                         };

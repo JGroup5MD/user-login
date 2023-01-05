@@ -3,19 +3,27 @@
 <html>
 <head>
     <style>
+        body
         {
-            width: 100%;
+            width:30%;
             font-size: 14px;
             text-align: center;
-            background: greenyellow;
-            padding: 10px 20px;
-            border-style: solid;
-            border-width: 0 1px 1px 0;
-            border-color: green;
+            background: #d0dcf4;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-right: -50%;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 3px 10px rgba(0, 0, 0.5);
+            font-family: Bookman,sans-serif;
+            padding: 20px 10px;
+            border-style: ridge;
+            border-width: 4px 4px 4px 4px;
+            border-color: lightgray;
+            border-radius: 10px;
         }
     </style>
     <title>Регистрация нового пользователя</title>
-
 </head>
 <body>
 <form method="POST" action="${pageContext.request.contextPath}/api/user">
@@ -32,7 +40,7 @@
         <input type="text" id="LastName" name="LastName"  placeholder="отчество"></label><br><br>
     <label>
         <input type="text" id="birthDate" name="birthDate" placeholder="ГГГГ-ММ-ДД"></label><br><br>
-    <label>
+
     <button type="submit" class="border-button">Зарегистрироваться</button>
 </form>
 </body>
