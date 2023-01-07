@@ -22,8 +22,9 @@ public class SessionKitchen extends HttpServlet {
         return val;
     }
         public static void saveSession(HttpServletRequest req, String LOGIN_PARAM_NAME, String val){
+            String user = LOGIN_PARAM_NAME;
             HttpSession session = req.getSession();
-            session.setAttribute(LOGIN_PARAM_NAME, val);
+            session.setAttribute(user, val);
 
         }
 
