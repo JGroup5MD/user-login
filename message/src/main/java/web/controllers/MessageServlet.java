@@ -29,7 +29,6 @@ public class MessageServlet extends HttpServlet {
         }
     }
 
-
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         IMessageService service = MessageService.getInstance();

@@ -5,6 +5,7 @@ import web.dto.MessageDTO;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 
 public class MessageDAO implements IMessageDAO {
@@ -40,6 +41,20 @@ public class MessageDAO implements IMessageDAO {
     public void generateID(MessageDTO newMessage) {
         newMessage.setId(lastID++);
 
+    }
+
+    @Override
+    public long countMassage(List<MessageDTO> list) {
+        long count = 0;
+        if (list.isEmpty()){
+            count=0;
+        }
+        for(MessageDTO item : list){
+            if (item!=null){
+                count++;
+            }
+        }
+        return count;
     }
 
 

@@ -28,6 +28,11 @@ public class RegistrationService implements IRegistrationService {
         return this.dao.get();
     }
 
+    @Override
+    public UserDto deleteUser(String login, UserDto user) {
+        return null;
+    }
+
 
     public void validate(NewUserDto user){
         String login = user.getLogin();

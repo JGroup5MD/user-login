@@ -27,12 +27,12 @@ public class UserDao implements IUserDao {
 
     }
 
-    UserDto adminUser = new UserDto(new NewUserDto("Вася",
-            "Ибрагимович",
-            "Тяпкин",
+    UserDto adminUser = new UserDto(new NewUserDto("Admin",
+            "Admin",
+            "Admin",
             "1988/02/02",
             "admin",
-            "123qwe"));
+            "admin"));
 
     public UserDao() {
         adminUser.setRole(Role.ADMIN);

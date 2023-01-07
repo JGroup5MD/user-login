@@ -2,6 +2,7 @@ package web.controllers;
 
 
 import web.dto.LoginDto;
+import web.dto.Role;
 import web.service.api.ILoginService;
 import web.service.fabrics.LoginServiceSingleton;
 
@@ -22,6 +23,8 @@ public class LoginServlet extends HttpServlet {
 
     private static final String LOGIN_PARAM_NAME = "login";
     private static final String PASSWORD_PARAM_NAME = "password";
+
+    private final Role PARAM_ROLE= Role.valueOf("role");
     private final ILoginService service;
 
 
@@ -49,10 +52,17 @@ public class LoginServlet extends HttpServlet {
             String loginVal;
             loginVal = getSessionValue(req, LOGIN_PARAM_NAME);
             saveSession(req, LOGIN_PARAM_NAME, loginVal);
-            writer.write("hello " + loginVal);
+            writer.write("Hello, " + loginVal);
         } else writer.write("Пользователь не авторизован");
 
 
+        if(service.isAuthorized() && req.isUserInRole("USER")) {
+            writer.write("<p>"+", Вы успешно вошли в систему"+ "</p>");
+        }
+        if(service.isAdmin() && req.isUserInRole("ADMIN")) {
+
+            writer.write("<p>"+", Вы успешно вошли в систему"+ "</p>");
+        }
 
     }
 }

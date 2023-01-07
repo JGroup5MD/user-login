@@ -14,5 +14,7 @@ public interface IRegistrationService {
   /*  UserDto findByUsername(String login);*/
     List<UserDto> get();
 
+    public UserDto deleteUser(String login, UserDto user);
+
 
 }

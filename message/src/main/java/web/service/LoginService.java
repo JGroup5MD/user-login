@@ -2,12 +2,14 @@ package web.service;
 import web.dao.UserDao;
 import web.dao.api.IUserDao;
 import web.dto.LoginDto;
+import web.dto.Role;
 import web.dto.UserDto;
 import web.service.api.ILoginService;
 import web.service.api.IRegistrationService;
 import web.service.fabrics.RegistrationServiceSingleton;
 
 import java.util.List;
+import java.util.jar.JarOutputStream;
 
 public class LoginService implements ILoginService {
 
@@ -63,6 +65,40 @@ public class LoginService implements ILoginService {
     @Override
     public boolean isAuthorized() {
         return authorized;
+    }
+
+    public boolean isAdmin() {
+        boolean admin = false;
+        if(authorized){
+            if(dao.get().get(position).getRole() == Role.ADMIN){
+                admin = true;
+            }
+        }
+        return admin;
+    }
+
+    public LoginDto getActiveUsers(List<LoginDto> userLogin){
+        if(isAdmin()){
+        if(userLogin.size()!=0 ) {
+            for (LoginDto item : userLogin) {
+                return item;
+            }
+        }
+        }
+        return null;
+    }
+
+    @Override
+    public UserDto deliteActiveUsers(UserDto user, String login, List<LoginDto> userLogin) {
+        return null;
+    }
+
+    public void addActiveUser(LoginDto activeUser, String login, String password, List<LoginDto> userLogin,long activeUsers) {
+        activeUsers = 0;
+        if (isAuthorized()) {
+                userLogin.add(activeUser);
+                activeUsers++;
+        } throw new IllegalArgumentException("404, incorrect parametrs");
     }
 
 

@@ -2,13 +2,16 @@ package web.service;
 
 
 import web.dao.MessageDAO;
+import web.dao.api.IMessageDAO;
 import web.dto.MessageDTO;
 import web.service.api.IMessageService;
 
+import java.util.List;
 import java.util.Map;
 
 public class MessageService implements IMessageService {
     private volatile static MessageService instance;
+    private IMessageDAO dao;
 
     public void save(Map<String, String[]> map, String userID){
         MessageDTO newMessage = new MessageDTO();
@@ -19,9 +22,18 @@ public class MessageService implements IMessageService {
         newMessage.setSenderID(userID);
         newMessage.setReceiverID(receiverID[0]);
         newMessage.setText(text[0]);
-
+        validateMessage(newMessage);
         MessageDAO.getInstance().registerNewMessage(newMessage);
 
+    }
+
+    public void validateMessage(MessageDTO message) {
+        if(message.getText()==null ||message.getText().length()<15){
+            throw new IllegalArgumentException("Вы пытаетесь отправить пустое сообщение, сообщение не может быть короче 15 символов");
+        }
+        if(message.getReceiverID()==null){
+            throw  new IllegalArgumentException("вы не указали кто будет получателем сообщения");
+        }
     }
 
     public String getMessages(String userID){
@@ -39,6 +51,12 @@ public class MessageService implements IMessageService {
         s = s + "</tbody></table>";
         return s;
     }
+
+    @Override
+    public long countMassage(List<MessageDTO> list) {
+            return dao.countMassage(list);
+    }
+
 
     public static MessageService getInstance() {
         if (instance == null) {
