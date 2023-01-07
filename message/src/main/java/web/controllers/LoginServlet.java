@@ -24,7 +24,6 @@ public class LoginServlet extends HttpServlet {
     private static final String LOGIN_PARAM_NAME = "login";
     private static final String PASSWORD_PARAM_NAME = "password";
 
-    private final Role PARAM_ROLE= Role.valueOf("role");
     private final ILoginService service;
 
 
@@ -56,12 +55,12 @@ public class LoginServlet extends HttpServlet {
         } else writer.write("Пользователь не авторизован");
 
 
-        if(service.isAuthorized() && req.isUserInRole("USER")) {
+        if(service.isAuthorized() && !service.isAdmin()) {
             writer.write("<p>"+", Вы успешно вошли в систему"+ "</p>");
         }
-        if(service.isAdmin() && req.isUserInRole("ADMIN")) {
+        if(service.isAdmin()) {
 
-            writer.write("<p>"+", Вы успешно вошли в систему"+ "</p>");
+            writer.write("<p>"+", Вы успешно вошли в систему, как админ"+ "</p>");
         }
 
     }
