@@ -6,11 +6,11 @@ import java.io.IOException;
 import java.util.Locale;
 @WebFilter(urlPatterns = {"/views/*"})
 public class FiltrConect implements Filter {
-    private FilterConfig config=null;
+    private FilterConfig config;
     private boolean active=false;
 
     @Override
-    public void init(FilterConfig filterConfig) throws ServletException {
+    public void init(FilterConfig config) throws ServletException {
         this.config=config;
         String act=config.getInitParameter("active");
         if(act!=null){

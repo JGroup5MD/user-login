@@ -7,25 +7,22 @@ import web.service.api.ILoginService;
 import web.service.api.IRegistrationService;
 
 import javax.servlet.ServletContext;
-import javax.servlet.annotation.WebListener;
+
+
 import javax.servlet.http.*;
 import java.util.ArrayList;
 import java.util.List;
 
 
-@WebListener
 public class ActiveUserListener implements HttpSessionAttributeListener, HttpSessionListener {
-    private  final ILoginService service; //Login
-    private  final Role role; //enum roles
-    private final IRegistrationService user; // dao
+    private ILoginService service;
+    private Role role;
+    private IRegistrationService user;
 
-
-    public ActiveUserListener(ILoginService service, Role role, String login, IRegistrationService user) {
-        this.service = service;
-        this.role=role;
-        this.user=user;
+    public ActiveUserListener(){
 
     }
+
 
     private int ActiveUserCount=0;
 
@@ -36,12 +33,17 @@ public class ActiveUserListener implements HttpSessionAttributeListener, HttpSes
             service.getActiveUsers(list);
         }
     }
+
     @Override
-    public void attributeRemoved(HttpSessionBindingEvent sbe) {
+    public void attributeRemoved(HttpSessionBindingEvent httpSessionBindingEvent) {
+
     }
+
     @Override
-    public void attributeReplaced(HttpSessionBindingEvent sbe) {
+    public void attributeReplaced(HttpSessionBindingEvent httpSessionBindingEvent) {
+
     }
+
     @Override
     public void sessionCreated(HttpSessionEvent se) {
         HttpSession session=se.getSession();

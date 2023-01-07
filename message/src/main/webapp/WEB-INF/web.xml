@@ -3,6 +3,32 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
          http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
-    <display-name>M-JD2-95-22</display-name>
-
+    <display-name>Group5</display-name>
+    <listener>
+        <listener-class>web.controllers.listeners.ActiveUserListener</listener-class>
+    </listener>
+    <filter>
+        <filter-name>AdminSecurityFilter</filter-name>
+        <filter-class>web.controllers.filters.AdminSecurityFilter</filter-class>
+        <init-param>
+            <param-name>active</param-name>
+            <param-value>true</param-value>
+        </init-param>
+        <init-param>
+            <param-name>another_key</param-name>
+            <param-value>another_value</param-value>
+        </init-param>
+    </filter>
+    <filter>
+        <filter-name>UserSecurityFilter</filter-name>
+        <filter-class>web.controllers.filters.UserSecuirityFilter</filter-class>
+        <init-param>
+            <param-name>active</param-name>
+            <param-value>true</param-value>
+        </init-param>
+        <init-param>
+            <param-name>another_key</param-name>
+            <param-value>another_value</param-value>
+        </init-param>
+    </filter>
 </web-app>
