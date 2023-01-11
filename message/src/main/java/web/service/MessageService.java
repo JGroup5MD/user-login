@@ -49,10 +49,10 @@ public class MessageService implements IMessageService {
         return s;
     }
 
-    @Override
-    public long countMassage(List<MessageDTO> list) {
-            return dao.countMassage(list);
-    }
+//    @Override
+//    public long countMassage(List<MessageDTO> list) {
+//            return dao.countMassage(list);
+//    }
 
 
 }

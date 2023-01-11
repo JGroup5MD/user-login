@@ -13,6 +13,8 @@ public interface ILoginService {
     boolean isAdmin();
 
     UserDto deliteActiveUsers(UserDto user, String login,List<LoginDto> userLogin);
+
+    int getActiveUsers();
 }
 
 /*

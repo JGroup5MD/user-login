@@ -33,20 +33,24 @@ public class MessageDAO implements IMessageDAO {
         newMessage.setId(lastID++);
     }
 
-
     @Override
-    public long countMassage(List<MessageDTO> message) {
-        long count = 0;
-        if (message.isEmpty()){
-            count=0;
-        }
-        for(MessageDTO item : message){
-            if (item!=null){
-                count++;
-            }
-        }
-        return count;
+    public int getTotalCount() {
+        return messages.size();
     }
+
+//    @Override
+//    public long countMassage(List<MessageDTO> message) {
+//        long count = 0;
+//        if (message.isEmpty()){
+//            count=0;
+//        }
+//        for(MessageDTO item : message){
+//            if (item!=null){
+//                count++;
+//            }
+//        }
+//        return count;
+//    }
 
 
     public static MessageDAO getInstance() {

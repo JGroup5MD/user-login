@@ -75,15 +75,9 @@ public class LoginService implements ILoginService {
         return admin;
     }
 
-    public LoginDto getActiveUsers(List<LoginDto> userLogin){
-        if(isAdmin()){
-        if(userLogin.size()!=0 ) {
-            for (LoginDto item : userLogin) {
-                return item;
-            }
-        }
-        }
-        return null;
+    @Override
+    public int getActiveUsers() {
+        return 0;
     }
 
     @Override

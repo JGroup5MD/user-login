@@ -47,7 +47,7 @@ public class UserDao implements IUserDao {
                 "users=" + registeredUsers +
                 '}';
     }
-
-
-
+    public int getTotalCount() {
+        return registeredUsers.size();
+    }
 }

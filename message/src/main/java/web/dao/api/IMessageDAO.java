@@ -10,5 +10,6 @@ public interface IMessageDAO {
     List<MessageDTO> getAllMessages(String userID);
     void generateID(MessageDTO newMessage);
 
-    long countMassage(List<MessageDTO> message);
+    int getTotalCount();
+    // long countMassage(List<MessageDTO> message);
 }
