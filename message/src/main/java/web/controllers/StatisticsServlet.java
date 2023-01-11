@@ -15,7 +15,7 @@ import java.io.PrintWriter;
 
 @WebServlet(name = "StatisticsServlet", urlPatterns = "/api/admin/statistics")
 public class StatisticsServlet extends HttpServlet {
-    private IStatisticService statisticServices = StatisticServiceSingleton.getInstance();
+    private final IStatisticService statisticServices = StatisticServiceSingleton.getInstance();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -24,7 +24,10 @@ public class StatisticsServlet extends HttpServlet {
         PrintWriter out = resp.getWriter();
         HttpSession session = req.getSession();
 
-        if (session == null || !session.getAttribute("user").equals("admin")) {
+        if (session == null
+                || session.getAttribute("user") == null
+                || !session.getAttribute("user").equals("admin")
+        ) {
             throw new ServletException();
         }
 
