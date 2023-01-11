@@ -1,35 +1,25 @@
 package web.dto;
 
-import web.dao.MessageDAO;
-import web.dao.api.IMessageDAO;
-
-import java.util.List;
-
 public class StatisticsDto {
-    private List<UserDto> registeredUsers;
-    private long messages;
-    private List<LoginDto> loginedUsers;
+    private int registeredUsers;
+    private int messages;
+    private int loginedUsers;
 
-    private List<MessageDTO> messageDTO;
-
-    private MessageDAO messageDAO;
-
-
-    public StatisticsDto(List<UserDto> registeredUsers,  List<LoginDto> loginedUsers) {
+    public StatisticsDto(int registeredUsers, int loginedUsers, int messageCount) {
         this.registeredUsers = registeredUsers;
-        this.messages = messageDAO.countMassage(messageDTO);
+        this.messages = messageCount;
         this.loginedUsers = loginedUsers;
     }
 
-    public List<UserDto> getRegisteredUsers() {
+    public int getRegisteredUsers() {
         return registeredUsers;
     }
 
-    public long getMessages() {
+    public int getMessages() {
         return messages;
     }
 
-    public List<LoginDto> getLoginedUsers() {
+    public int getLoginedUsers() {
         return loginedUsers;
     }
 }

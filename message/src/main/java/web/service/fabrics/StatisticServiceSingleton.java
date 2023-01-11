@@ -1,6 +1,7 @@
 package web.service.fabrics;
 
 
+import web.dao.ActiveSessionDAO;
 import web.dao.fabrics.MessageDAOSingleton;
 import web.dao.fabrics.UserDaoSingleton;
 import web.service.StatisticsService;
@@ -19,7 +20,7 @@ public class StatisticServiceSingleton {
             synchronized (StatisticServiceSingleton.class){
                 if (instance==null){
                     instance= new StatisticsService(
-                            LoginServiceSingleton.getInstance(),
+                            ActiveSessionDAO.getInstance(),
                             UserDaoSingleton.getInstance(),
                             MessageDAOSingleton.getInstance());
 

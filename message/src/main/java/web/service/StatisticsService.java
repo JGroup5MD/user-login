@@ -2,23 +2,23 @@ package web.service;
 
 
 
+import web.dao.api.IActiveSessionDAO;
 import web.dao.api.IMessageDAO;
 import web.dao.api.IUserDao;
 import web.dto.*;
-import web.service.api.ILoginService;
 import web.service.api.IStatisticService;
 
 
 public class StatisticsService implements IStatisticService {
 
     private IMessageDAO messageInfo;
-    private ILoginService loginService;
+    private IActiveSessionDAO activeSessionInfo;
     private IUserDao registrationInfo;
 
     private Role role;
 
-    public StatisticsService(ILoginService loginService, IUserDao registrationInfo, IMessageDAO messageInfo) {
-        this.loginService = loginService;
+    public StatisticsService(IActiveSessionDAO activeSessionInfo, IUserDao registrationInfo, IMessageDAO messageInfo) {
+        this.activeSessionInfo = activeSessionInfo;
         this.messageInfo = messageInfo;
         this.registrationInfo = registrationInfo;
     }
@@ -26,7 +26,7 @@ public class StatisticsService implements IStatisticService {
     public StatisticsDto getStatistics() {
         return new StatisticsDto(
                 registrationInfo.getTotalCount(),
-                loginService.getActiveUsers(),
+                activeSessionInfo.getTotalCount(),
                 messageInfo.getTotalCount()
         );
     }
