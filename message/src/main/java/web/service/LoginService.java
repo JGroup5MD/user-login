@@ -1,15 +1,13 @@
 package web.service;
-import web.dao.UserDao;
 import web.dao.api.IUserDao;
 import web.dto.LoginDto;
 import web.dto.Role;
 import web.dto.UserDto;
+import web.model.PassEncBase;
 import web.service.api.ILoginService;
 import web.service.api.IRegistrationService;
-import web.service.fabrics.RegistrationServiceSingleton;
 
 import java.util.List;
-import java.util.jar.JarOutputStream;
 
 public class LoginService implements ILoginService {
 

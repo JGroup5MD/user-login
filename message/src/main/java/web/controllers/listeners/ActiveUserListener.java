@@ -1,14 +1,10 @@
 package web.controllers.listeners;
 
-
 import web.dto.LoginDto;
 import web.dto.Role;
 import web.service.api.ILoginService;
 import web.service.api.IRegistrationService;
-
 import javax.servlet.ServletContext;
-
-
 import javax.servlet.http.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +26,7 @@ public class ActiveUserListener implements HttpSessionAttributeListener, HttpSes
     public void attributeAdded(HttpSessionBindingEvent sbe) {
         List<LoginDto> list = new ArrayList<>();
         if(sbe.getName().equals("user")){
-            service.getActiveUsers(list);
+            service.get();
         }
     }
 

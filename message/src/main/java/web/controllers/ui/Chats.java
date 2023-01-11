@@ -25,6 +25,6 @@ public class Chats extends HttpServlet {
         UserDto receiver = (UserDto) session.getAttribute("user");
         request.setAttribute("receiver", receiver);
 
-        request.getRequestDispatcher("/jsp/message/chats.jsp").forward(request, response);
+        request.getRequestDispatcher("/views/ui/chats/chats.jsp").forward(request, response);
 }
     }

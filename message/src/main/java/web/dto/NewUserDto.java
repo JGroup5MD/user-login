@@ -1,6 +1,6 @@
 package web.dto;
 
-import web.service.PassEncBase;
+import web.model.PassEncBase;
 
 import java.util.Date;
 

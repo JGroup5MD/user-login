@@ -11,6 +11,8 @@ public interface IRegistrationService {
 
     void save(NewUserDto user);
 
+    void validate(NewUserDto user);
+
   /*  UserDto findByUsername(String login);*/
     List<UserDto> get();
 

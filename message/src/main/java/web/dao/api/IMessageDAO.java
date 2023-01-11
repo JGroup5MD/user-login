@@ -7,8 +7,8 @@ import java.util.List;
 
 public interface IMessageDAO {
     void registerNewMessage(MessageDTO newMessage);
-    ArrayList<MessageDTO> getAllMessages(String userID);
+    List<MessageDTO> getAllMessages(String userID);
     void generateID(MessageDTO newMessage);
 
-    public long countMassage(List<MessageDTO> list);
+    long countMassage(List<MessageDTO> message);
 }

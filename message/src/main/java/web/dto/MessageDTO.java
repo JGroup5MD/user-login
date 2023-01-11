@@ -1,16 +1,19 @@
 package web.dto;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 public class MessageDTO {
     private int id;
-    private String senderID;
-    private String receiverID;
+    private String sender;
+    private String receiver;
     private String text;
-    private Date date;
+    private LocalDateTime date;
 
-    public MessageDTO(){
-
+    public MessageDTO(String sender, String receiver, String text) {
+        this.sender = sender;
+        this.receiver = receiver;
+        this.text = text;
     }
 
     public int getId() {
@@ -21,20 +24,20 @@ public class MessageDTO {
         this.id = id;
     }
 
-    public String getSenderID() {
-        return senderID;
+    public String getSender() {
+        return sender;
     }
 
-    public void setSenderID(String senderID) {
-        this.senderID = senderID;
+    public void setSender(String sender) {
+        this.sender = sender;
     }
 
-    public String getReceiverID() {
-        return receiverID;
+    public String getReceiver() {
+        return receiver;
     }
 
-    public void setReceiverID(String receiverID) {
-        this.receiverID = receiverID;
+    public void setReceiver(String receiverID) {
+        this.receiver = receiver;
     }
 
     public String getText() {
@@ -45,11 +48,11 @@ public class MessageDTO {
         this.text = text;
     }
 
-    public Date getDate() {
+    public LocalDateTime getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDateTime date) {
         this.date = date;
     }
 }

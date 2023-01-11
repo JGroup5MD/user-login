@@ -1,37 +1,34 @@
 package web.service;
 
-
-import web.dao.MessageDAO;
 import web.dao.api.IMessageDAO;
+import web.dao.fabrics.MessageDAOSingleton;
 import web.dto.MessageDTO;
 import web.service.api.IMessageService;
 
+import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Map;
+
 
 public class MessageService implements IMessageService {
-    private volatile static MessageService instance;
-    private IMessageDAO dao;
 
-    public void save(Map<String, String[]> map, String userID){
-        MessageDTO newMessage = new MessageDTO();
+    private  final IMessageDAO dao;
 
-        String[] receiverID = map.get("receiverID");
-        String[] text = map.get("text");
+    public MessageService(IMessageDAO dao) {
+        this.dao = dao;
+    }
 
-        newMessage.setSenderID(userID);
-        newMessage.setReceiverID(receiverID[0]);
-        newMessage.setText(text[0]);
-        validateMessage(newMessage);
-        MessageDAO.getInstance().registerNewMessage(newMessage);
+    public void save(MessageDTO message){
+        this.validateMessage(message);
+        message.setDate(LocalDateTime.now());
+        this.dao.registerNewMessage(message);
 
     }
 
     public void validateMessage(MessageDTO message) {
-        if(message.getText()==null ||message.getText().length()<15){
+        if(message.getText()==null){
             throw new IllegalArgumentException("Вы пытаетесь отправить пустое сообщение, сообщение не может быть короче 15 символов");
         }
-        if(message.getReceiverID()==null){
+        if(message.getReceiver()==null){
             throw  new IllegalArgumentException("вы не указали кто будет получателем сообщения");
         }
     }
@@ -42,10 +39,10 @@ public class MessageService implements IMessageService {
                 "<th>От кого</th>" +
                 "<th>Кому</th>" +
                 "<th>Текст</th></tr>";
-        for(MessageDTO message: MessageDAO.getInstance().getAllMessages(userID)){
+        for(MessageDTO message: MessageDAOSingleton.getInstance().getAllMessages(userID)){
             s = s + "<tr><td>" + message.getDate() +
-                    "</td><td>" + message.getSenderID() +
-                    "</td><td>" + message.getReceiverID() +
+                    "</td><td>" + message.getSender() +
+                    "</td><td>" + message.getReceiver() +
                     "</td><td>" + message.getText() + "</td></tr>";
         }
         s = s + "</tbody></table>";
@@ -58,14 +55,4 @@ public class MessageService implements IMessageService {
     }
 
 
-    public static MessageService getInstance() {
-        if (instance == null) {
-            synchronized (MessageService.class) {
-                if (instance == null) {
-                    instance = new MessageService();
-                }
-            }
-        }
-        return instance;
-    }
 }

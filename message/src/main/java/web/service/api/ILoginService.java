@@ -11,7 +11,7 @@ public interface ILoginService {
     public boolean getAuthorized(LoginDto creds);
     boolean isAuthorized();
     boolean isAdmin();
-    LoginDto getActiveUsers(List<LoginDto> userLogin);
+
     UserDto deliteActiveUsers(UserDto user, String login,List<LoginDto> userLogin);
 }
 

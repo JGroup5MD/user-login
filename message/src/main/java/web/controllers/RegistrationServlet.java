@@ -43,28 +43,24 @@ public class RegistrationServlet extends HttpServlet {
         String passwordConfirm = req.getParameter(PASSWORD_CONFIRM_PARAM_NAME);
         String dateOfBirth = req.getParameter(DATEOFBIRTH_PARAM_NAME);
 
-        if (name.isEmpty() || lastName.isEmpty() || dateOfBirth.isEmpty()){
+        if (login.isEmpty() || name.isEmpty() || lastName.isEmpty() || password.isEmpty()){
             throw new IllegalArgumentException("Один из обязательных параментров не заполнен");
+        } else if (!password.equals(passwordConfirm)) {
+            throw new IllegalArgumentException("Пароли не совпадают");}
+        else {
+            NewUserDto.UserBuilder builder =
+                    NewUserDto.UserBuilder.create()
+                            .setName(name)
+                            .setMiddleName(middleName)
+                            .setLastName(lastName)
+                            .setDateOfBirth(dateOfBirth)
+                            .setLogin(login)
+                            .setPassword(password);
+
+            this.service.save(builder.build());
         }
-
-        if(!password.equals(passwordConfirm)) {
-            throw new IllegalArgumentException("Пароли не совпадают");
-        }
-
-
-        NewUserDto.UserBuilder builder =
-                NewUserDto.UserBuilder.create()
-                        .setName(name)
-                        .setMiddleName(middleName)
-                        .setLastName(lastName)
-                        .setDateOfBirth(dateOfBirth)
-                        .setLogin(login)
-                        .setPassword(password);
-
-        this.service.save(builder.build());
-
         PrintWriter writer = resp.getWriter();
-        writer.write("Welcome " + service.get());
+        writer.write("Welcome on board, " + login + "!");
 
 
     }

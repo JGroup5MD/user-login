@@ -1,4 +1,4 @@
-package web.service;
+package web.model;
 
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;

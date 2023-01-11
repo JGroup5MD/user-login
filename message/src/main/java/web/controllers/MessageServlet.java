@@ -1,7 +1,10 @@
 package web.controllers;
 
+import web.dao.MessageDAO;
+import web.dto.MessageDTO;
 import web.service.MessageService;
 import web.service.api.IMessageService;
+import web.service.fabrics.MessageServiceSingleton;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,15 +18,26 @@ import java.util.Map;
 
 @WebServlet(name = "MessageServlet", urlPatterns = "/api/message")
 public class MessageServlet extends HttpServlet {
+
+    private static final String RECEIVER_PARAM_NAME = "receiver";
+    private static final String MESSAGE_BODY_PARAM = "text";
+
+    private final IMessageService service;
+
+    public MessageServlet() {
+        this.service = MessageServiceSingleton.getInstance();
+    }
+
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException {
         HttpSession session = req.getSession();
 
-        String userID = (String) session.getAttribute("user");
-        Map<String, String[]> inputParams = req.getParameterMap();
+        String sender = (String) session.getAttribute("user");
+        String receiver = req.getParameter(RECEIVER_PARAM_NAME);
+        String text = req.getParameter(MESSAGE_BODY_PARAM);
 
-        IMessageService service = MessageService.getInstance();
+        MessageDTO message = new MessageDTO(sender, receiver, text);
         try {
-            service.save(inputParams, userID);
+            service.save(message);
         } catch (Exception e) {
             throw new ServletException("Ошибка введенной информации");
         }
@@ -31,7 +45,7 @@ public class MessageServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        IMessageService service = MessageService.getInstance();
+
         resp.setContentType("text/html; charset=UTF-8");
         HttpSession session = req.getSession();
         String userID = (String) session.getAttribute("user");

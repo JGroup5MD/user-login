@@ -1,9 +1,7 @@
 package web.controllers.filters;
 
-
 import web.dto.LoginDto;
 import web.dto.Role;
-
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;

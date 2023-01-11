@@ -2,52 +2,53 @@ package web.service;
 
 
 
-import web.dto.LoginDto;
-import web.dto.MessageDTO;
-import web.dto.Role;
-import web.dto.UserDto;
+import web.dao.api.IMessageDAO;
+import web.dao.api.IUserDao;
+import web.dto.*;
 import web.service.api.ILoginService;
 import web.service.api.IMessageService;
 import web.service.api.IRegistrationService;
 import web.service.api.IStatisticService;
 
 import java.util.List;
-import java.util.Map;
-import java.util.Objects;
 
 
 public class StatisticsService implements IStatisticService {
 
-    private final IMessageService ms;
-    private final ILoginService ls;
-    private final IRegistrationService iurs;
-    private final Role role;
+    private IMessageService ms;
+    private ILoginService ls;
+    private IRegistrationService iurs;
 
-    public StatisticsService(IMessageService ms, ILoginService ls, IRegistrationService iurs, Role role) {
-        this.ms = ms;
-        this.ls = ls;
-        this.iurs = iurs;
-        this.role = role;
+    private Role role;
+
+
+    public StatisticsService() {
+
     }
 
-    // UserAndRoleRegistration = UserDto
-    public void getAllUsers() {
-        this.iurs.get();
+    public StatisticsService(ILoginService instance, IUserDao instance1, IMessageDAO instance2) {
+    }
+
+
+    @Override
+    public StatisticsDto getStatistics() {
+        return null;
     }
 
     @Override
-    public void getAllUsers(Map<Integer, UserDto> map) {
-
+    public List<UserDto> getAllUsers() {
+        return null;
     }
 
     public UserDto deleteUser(String login, UserDto user) {
         return this.iurs.deleteUser(login, user);
     }
 
+
     @Override
-    public void getActiveUsers(Role role, List<LoginDto> userLogin) {
-        if (Objects.equals(role, Role.ADMIN)) {
-            this.ls.getActiveUsers(userLogin);
+    public void getActiveUsers() {
+        if (ls.isAdmin()) {
+            this.ls.get();
         }
     }
 

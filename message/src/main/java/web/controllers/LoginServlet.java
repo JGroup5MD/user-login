@@ -21,7 +21,7 @@ import static web.model.SessionKitchen.saveSession;
 @WebServlet(name = "LoginServlet", urlPatterns = "/api/login")
 public class LoginServlet extends HttpServlet {
 
-    private static final String LOGIN_PARAM_NAME = "login";
+    private static final String LOGIN_PARAM_NAME = "user";
     private static final String PASSWORD_PARAM_NAME = "password";
 
     private final ILoginService service;
@@ -41,10 +41,10 @@ public class LoginServlet extends HttpServlet {
         PrintWriter writer = resp.getWriter();
 
 
-        String login = req.getParameter(LOGIN_PARAM_NAME);
+        String user = req.getParameter(LOGIN_PARAM_NAME);
         String password = req.getParameter(PASSWORD_PARAM_NAME);
 
-        LoginDto creds = new LoginDto(login, password);
+        LoginDto creds = new LoginDto(user, password);
 
 
         if(service.getAuthorized(creds)){

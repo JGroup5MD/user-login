@@ -36,11 +36,15 @@ public class RegistrationService implements IRegistrationService {
 
     public void validate(NewUserDto user){
         String login = user.getLogin();
+
         for (int i=0; i < this.dao.get().size(); i++) {
+
             if (login.equals(this.dao.get().get(i).getNewUserDto().getLogin())) {
                 throw new IllegalArgumentException("Пользователь " + login + " уже зарегистрирован");
             }
         }
+
+
     }
 
 

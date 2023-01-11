@@ -4,11 +4,14 @@ import web.dao.UserDao;
 import web.dto.LoginDto;
 import web.dto.MessageDTO;
 import web.dto.UserDto;
+import web.service.StatisticsService;
 import web.service.api.ILoginService;
 import web.service.api.IRegistrationService;
 import web.service.api.IStatisticService;
 import web.service.fabrics.RegistrationServiceSingleton;
+import web.service.fabrics.StatisticServiceSingleton;
 
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -24,15 +27,12 @@ import java.util.Map;
 
 @WebServlet (name="StatisticsServlet", urlPatterns = "/api/admin/statistics")
 public class StatisticsServlet extends HttpServlet {
-    private final IStatisticService ss;
-    private final IRegistrationService us;
-    private final ILoginService ls;
-    private  final UserDao udao;
-    public StatisticsServlet(IStatisticService ss, IRegistrationService us, ILoginService ls, UserDao udao) {
-        this.ss = ss;
-        this.us= RegistrationServiceSingleton.getInstance();
-        this.ls=ls;
-        this.udao=udao;
+    private IStatisticService ss;
+    private IRegistrationService us;
+    private ILoginService ls;
+
+    public StatisticsServlet() {
+        this.ss = StatisticServiceSingleton.getInstance();
     }
 
     @Override
@@ -43,14 +43,20 @@ public class StatisticsServlet extends HttpServlet {
         HttpSession session=req.getSession();
 
         List<MessageDTO> listMassage=new ArrayList<>();
-        List<LoginDto> listLogin=new ArrayList<>();
-        Map<Integer, UserDto> mapUser=new HashMap<>(); //dto
 
-         if(ls.isAdmin()){
+
+         if(session.getAttribute("user").equals("admin")){
             out.write("<p>"+ "вы вошли в систему как адимнистратор" +"</p>");
             out.write("<p>"+ "всего зарегистрировано пользователей: "+ us.get()+"</p>");
-            out.write("<p>"+ "активных пользователей: " +ls.getActiveUsers(listLogin) +"</p>");
+            out.write("<p>"+ "активных пользователей: " + ls.get() +"</p>");
             out.write("<p>"+ "всего было отправлено сообщенией: "+ss.countMassage(listMassage) +"</p>");
         }
+
     }
+
+
+
+
+
+
 }
