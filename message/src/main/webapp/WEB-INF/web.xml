@@ -21,7 +21,7 @@
     </filter>
     <filter>
         <filter-name>UserSecurityFilter</filter-name>
-        <filter-class>web.controllers.filters.UserSecuirityFilter</filter-class>
+        <filter-class>web.controllers.filters.UserSecurityFilter</filter-class>
         <init-param>
             <param-name>active</param-name>
             <param-value>true</param-value>

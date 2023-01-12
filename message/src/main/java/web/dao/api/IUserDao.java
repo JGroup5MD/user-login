@@ -9,6 +9,7 @@ public interface IUserDao {
     void save(UserDto user);
 
     List<UserDto> get();
-    public int getTotalCount();
+    int getTotalCount();
+    UserDto findUserByLogin(String login);
 
 }

@@ -8,13 +8,12 @@ public interface ILoginService {
     List<UserDto> get();
     boolean exist(String login);
     boolean authenticate(String password);
-    public boolean getAuthorized(LoginDto creds);
+    boolean getAuthorized(LoginDto creds);
     boolean isAuthorized();
     boolean isAdmin();
-
+    boolean isAdmin(String login);
     UserDto deliteActiveUsers(UserDto user, String login,List<LoginDto> userLogin);
 
-    int getActiveUsers();
 }
 
 /*

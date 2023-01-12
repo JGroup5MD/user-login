@@ -24,13 +24,6 @@ public class StatisticsServlet extends HttpServlet {
         PrintWriter out = resp.getWriter();
         HttpSession session = req.getSession();
 
-        if (session == null
-                || session.getAttribute("user") == null
-                || !session.getAttribute("user").equals("admin")
-        ) {
-            throw new ServletException();
-        }
-
         StatisticsDto statistic = statisticServices.getStatistics();
 
         out.write("<p>" + "вы вошли в систему как адимнистратор" + "</p>");

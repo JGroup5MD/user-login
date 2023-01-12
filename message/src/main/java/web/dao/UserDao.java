@@ -13,7 +13,7 @@ import java.util.*;
 
 public class UserDao implements IUserDao {
 
-    private List<UserDto> registeredUsers = new ArrayList<>();
+    private final List<UserDto> registeredUsers = new ArrayList<>();
 
 
     @Override
@@ -39,6 +39,18 @@ public class UserDao implements IUserDao {
         adminUser.setDtCreate(LocalDateTime.now());
         this.registeredUsers.add(0, adminUser);
 
+    }
+
+    public UserDto findUserByLogin(String login) {
+        if (login == null) {
+            return null;
+        }
+        for (UserDto user : registeredUsers) {
+            if (user.getNewUserDto().getLogin().equals(login)) {
+                return user;
+            }
+        }
+        return null;
     }
 
     @Override

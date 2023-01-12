@@ -12,7 +12,7 @@ import java.util.List;
 public class LoginService implements ILoginService {
 
     private int position;
-    private IUserDao dao;
+    private final IUserDao dao;
     private boolean authorized;
 
     private IRegistrationService regService;
@@ -75,9 +75,12 @@ public class LoginService implements ILoginService {
         return admin;
     }
 
-    @Override
-    public int getActiveUsers() {
-        return 0;
+    public boolean isAdmin(String login) {
+        UserDto user = dao.findUserByLogin(login);
+        if(user == null){
+            return false;
+        }
+        return user.getRole().equals(Role.ADMIN);
     }
 
     @Override

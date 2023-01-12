@@ -1,8 +1,5 @@
 package web.controllers.filters;
 
-import web.service.api.ILoginService;
-import web.service.fabrics.LoginServiceSingleton;
-
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
@@ -10,17 +7,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebFilter(urlPatterns = {"/ui/admin/*", "/api/admin/*"})
-public class AdminSecurityFilter implements Filter {
-    private final ILoginService loginService;
-
-    public AdminSecurityFilter(){
-        loginService = LoginServiceSingleton.getInstance();
-    }
-
+@WebFilter(urlPatterns = {"/ui/user/message", "/ui/chats/chats", "/api/message"})
+public class UserSecurityFilter implements Filter {
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
-
     }
 
     @Override
@@ -34,13 +24,7 @@ public class AdminSecurityFilter implements Filter {
         HttpSession session = request.getSession();
 
         if ((session != null) && (session.getAttribute("user") != null)) {
-            String login = (String) session.getAttribute("user");
-            if (loginService.isAdmin(login)) {
-                filterChain.doFilter(request, response);
-            } else {
-                throw new ServletException("Ошибка доступа");
-            }
-
+            filterChain.doFilter(request, response);
         } else {
             response.sendRedirect(contexPath = "/ui/signIn");
         }
