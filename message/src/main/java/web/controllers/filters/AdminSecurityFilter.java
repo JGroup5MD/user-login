@@ -38,7 +38,7 @@ public class AdminSecurityFilter implements Filter {
             if (loginService.isAdmin(login)) {
                 filterChain.doFilter(request, response);
             } else {
-                throw new ServletException("Ошибка доступа");
+                throw new ServletException("В доступе отказано. Вы не авторизованы для просмотра этой страницы");
             }
 
         } else {

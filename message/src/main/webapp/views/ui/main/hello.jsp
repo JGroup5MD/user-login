@@ -9,8 +9,9 @@
         .a{
             cursor: pointer;
         }
+
     </style>
-    <title>Chats</title>
+    <title>Main page</title>
 
 </head>
 <body>
@@ -30,16 +31,9 @@
             border-width: 4px 4px 4px 4px;
             border-color: lightgray;
             border-radius: 10px;">
-<h1 class="a" style="color: #4e5077">Сообщения для пользователя: "${receiverID.dto.login}"</h1>
-<br><br>
-<c:forEach items="${messages}" var="item">
-    <p style="color: #a04c1f">${param["IDsender"]}</p>
-    <p style="color: #a04c1f">${param["message"]}</p>
-    <p style="color: #a04c1f">${item.dtAcceptance.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))} от
-            ${item.message.from.M.login}: ${item.message.text}</p>
-</c:forEach>
-<p style="color: #a04c1f"><a class="a" href="${pageContext.request.contextPath}/ui/user/message">Написать и отправить сообщение</a></p>
-<p style="color: orangered"><a class="a" href="${pageContext.request.contextPath}/ui">Вернуться на главную страницу </a></p>
+<h1 style="color: #4e5077">Добро пожаловать</h1>
+<h3 style="color: #a04c1f"><a class="a" href="${pageContext.request.contextPath}/ui/signIn">Вход</a></h3>
+    <h3 style="color: #a04c1f"><a class="a" href="${pageContext.request.contextPath}/ui/signUp">Регистрация </a></h3>
 </div>
 </body>
 </html>

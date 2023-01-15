@@ -1,4 +1,4 @@
-<%@ page language="java" contentType= "text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+/<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <style>
@@ -8,6 +8,7 @@
         }
         button {
             background: #e9f8f8;
+            width: 45%;
             border-width: 3px;
             border-style: ridge;
             border-color: lightgray;
@@ -30,9 +31,10 @@
         }
 
     </style>
-    <title>Message</title>
+    <title>Авторизация</title>
+
 </head>
-<body >
+<body>
 <div style="width:30%;
             font-size: 14px;
             text-align: center;
@@ -49,18 +51,18 @@
             border-width: 4px 4px 4px 4px;
             border-color: lightgray;
             border-radius: 10px;">
-<form method="POST" action="${pageContext.request.contextPath}/api/message"
->
+<form method="POST" action="${pageContext.request.contextPath}/api/login">
+    <h2  style="color: #4e5077" class="logo">Пройдите авторизацию</h2>
     <label>
-        <input style="color: #4e5077" type="text" name="receiver" placeholder="Получатель"/>
+        <input style="color: #a04c1f" type="text" name="user" placeholder="Логин"/>
     </label> <br><br>
     <label>
-        <input style="color: #4e5077" type="text" name="text" placeholder="Текст сообщения"/>
+        <input style="color: #a04c1f"type="text" name="password" placeholder="Пароль"/>
     </label> <br><br>
 
-    <button style="color: orangered" type="submit" class="border-button">отправить</button  >
+    <button style="color: orangered" type="submit" class="border-button">Войти</button >
 </form>
-    </div>
+</div>
 </body>
 </html>
 

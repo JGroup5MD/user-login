@@ -26,10 +26,14 @@ public class StatisticsServlet extends HttpServlet {
 
         StatisticsDto statistic = statisticServices.getStatistics();
 
-        out.write("<p>" + "вы вошли в систему как адимнистратор" + "</p>");
-        out.write("<p>" + "всего зарегистрировано пользователей: " + statistic.getRegisteredUsers() + "</p>");
-        out.write("<p>" + "активных пользователей: " + statistic.getLoginedUsers() + "</p>");
-        out.write("<p>" + "всего было отправлено сообщенией: " + statistic.getMessages() + "</p>");
+        int userRegCount = statistic.getRegisteredUsers();
+        int userLoginCount = statistic.getLoginedUsers();
+        int messagesCount = statistic.getMessages();
+
+        out.write("<p>" + "вы вошли в систему как адимнистратор " + "</p>");
+        out.write("<p>" + "всего зарегистрировано пользователей: " + userRegCount + "</p>");
+        out.write("<p>" + "активных пользователей: " + userLoginCount + "</p>");
+        out.write("<p>" + "всего было отправлено сообщенией: " + messagesCount + "</p>");
     }
 
 

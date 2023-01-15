@@ -21,7 +21,7 @@
 <div
 >
 <h1>Welcome</h1>
-<h3>Get started registration <a href="${pageContext.request.contextPath}ui/signUp">Sign up</a></h3>
+<h3>Get started registration <a href="${pageContext.request.contextPath}ui/signUp">Sign up </a></h3>
 </div>>
 </body>
 </html>
